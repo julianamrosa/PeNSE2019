@@ -146,6 +146,56 @@ pense$INSTRUCAO_MAE <- factor(instrucao_mae, c("Abandono", "Nenhuma instrução 
                                           "Sem resposta"),
                          ordered=T)
 
+# Ajuste para tabela 2.1.1
+
+faltou <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B07001[i])){
+    faltou[i] <- NA
+  }
+  else if (pense$B07001[i]==-2){
+    faltou[i] <- "Abandono"
+  }
+  else if (pense$B07001[i]==1){
+    faltou[i] <- "Não"
+  }
+  else if (pense$B07001[i]==9){
+    faltou[i] <- "Sem resposta"
+  }
+  else{
+    faltou[i] <- "Sim"
+  }
+}
+
+pense$FALTOU <- factor(faltou, c("Abandono", "Sim", "Não", "Sem resposta"),
+                              ordered=T)
+
+# Ajuste para tabela 2.2.1
+
+sabe <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B07002[i])){
+    sabe[i] <- NA
+  }
+  else if (pense$B07002[i]==-2){
+    sabe[i] <- "Abandono"
+  }
+  else if (pense$B07002[i]==1 | pense$B07002[i]==2){
+    sabe[i] <- "Não"
+  }
+  else if (pense$B07002[i]==9){
+    sabe[i] <- "Sem resposta"
+  }
+  else{
+    sabe[i] <- "Sim"
+  }
+}
+
+pense$SABE <- factor(sabe, c("Abandono", "Sim", "Não", "Sem resposta"),
+                       ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
@@ -218,3 +268,5 @@ instrucao_mae <- c("Nenhuma instrução ou EF incompleto",
                    "EF completo ou EM incompleto",
                    "EM completo ou ES incompleto",
                    "ES completo", "Não sei")
+
+faltou=c("Sim", "Não")
