@@ -268,3 +268,59 @@ saveWorkbook(wb,"Tema02/Tema02.xlsx",overwrite = TRUE)
 
 
 
+## TABELA 2.2.3 ##
+
+table(pense$SABE) #pais sabem o que o aluno faz no tempo livre
+
+tabela_223_pt1 <- modelo3(DESENHO=subset(desenho_validos,
+                                         (pense$SABE!="Abandono"
+                                          & pense$B01001A==1)),
+                          VAR_COL="SABE",
+                          NOME_VAR_COL="Seu responsável sabe o que você faz no seu tempo livre?",
+                          VETOR_COL="Sim",
+                          FILTRO=2,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_3vars",
+                          NOM_VAR_LIN="Sexo",
+                          VETOR_LIN="Masculino")
+
+tabela_223_pt2 <- modelo3(DESENHO=subset(desenho_validos,
+                                         (pense$SABE!="Abandono"
+                                          & pense$B01001A==2)),
+                          VAR_COL="SABE",
+                          NOME_VAR_COL="Seu responsável sabe o que você faz no seu tempo livre?",
+                          VETOR_COL="Sim",
+                          FILTRO=2,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_3vars",
+                          NOM_VAR_LIN="Sexo",
+                          VETOR_LIN="Feminino")
+
+tabela_223_pt3 <- modelo3(DESENHO=subset(desenho_validos,
+                                         (pense$SABE!="Abandono"
+                                          & pense$DEP_ADMIN==1)),
+                          VAR_COL="SABE",
+                          NOME_VAR_COL="Seu responsável sabe o que você faz no seu tempo livre?",
+                          VETOR_COL="Sim",
+                          FILTRO=2,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_3vars",
+                          NOM_VAR_LIN="Dependência Administrativa",
+                          VETOR_LIN="Pública")
+
+tabela_223_pt4 <- modelo3(DESENHO=subset(desenho_validos, (pense$SABE!="Abandono" & pense$DEP_ADMIN==2)),
+                          VAR_COL="SABE",
+                          NOME_VAR_COL="Seu responsável sabe o que você faz no seu tempo livre?",
+                          VETOR_COL="Sim",
+                          FILTRO=2,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_3vars",
+                          NOM_VAR_LIN="Dependência Administrativa",
+                          VETOR_LIN="Privada")
+
+tabela_223 <- rbind(tabela_223_pt1, tabela_223_pt2, tabela_223_pt3, tabela_223_pt4)
+
+wb <- loadWorkbook("Tema02/Tema02.xlsx")
+addWorksheet(wb,"2.2.3")
+writeData(wb,"2.2.3",tabela_223)
+saveWorkbook(wb,"Tema02/Tema02.xlsx",overwrite = TRUE)
