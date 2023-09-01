@@ -249,7 +249,7 @@ for (i in 1:nrow(pense)){
 pense$PRESTATIVOS <- factor(prestativos, c("Abandono", "Nunca",
                                            "Raramente ou às vezes",
                                            "Quase sempre ou sempre",
-                                           "Sem resposta"),
+                                           "Sem Resposta"),
                         ordered=T)
 
 # Objeto inicial
@@ -328,3 +328,11 @@ instrucao_mae <- c("Nenhuma instrução ou EF incompleto",
 prestativos <- c("Nunca",
                  "Raramente ou às vezes",
                  "Quase sempre ou sempre")
+
+motivo_humilhacao <- c("Cor ou raça",
+                       "Religião",
+                       "Aparência do rosto",
+                       "Aparência do corpo",
+                       "Orientação sexual",
+                       "Região de origem",
+                       "Outros motivos")

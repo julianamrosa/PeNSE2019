@@ -240,8 +240,168 @@ modelo4 <- function(DESENHO, VAR_COL, NOME_VAR_COL,
   return(tabela)
 }
 
+## MODELO 5 ## sexo e dep adm nas colunas (além da outra var) --> já gera as 3 tabelas (modelos 1, 2 e 3)
 
-#continuar a partir da 1.7.2
-#HOJE: fechar Tema01
-
-#Fazer Tema02 cronometrando (separar 5h para isso)
+modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do tipo pense$
+  
+  tabela1 <- data.frame()
+  
+  tt <- modelo1(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & pense$B01001A==1)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_4vars",
+                VAR_EXTRA="Sexo",
+                VALOR_EXTRA="Masculino")
+  tabela1 <- rbind(tabela1, tt)
+  
+  tt <- modelo1(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & pense$B01001A==2)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_4vars",
+                VAR_EXTRA="Sexo",
+                VALOR_EXTRA="Feminino")
+  
+  tabela1 <- rbind(tabela1, tt)
+  
+  tt <- modelo1(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & pense$DEP_ADMIN==1)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_4vars",
+                VAR_EXTRA="Dependência Administrativa",
+                VALOR_EXTRA="Pública")
+  
+  tabela1 <- rbind(tabela1, tt)
+  
+  tt <- modelo1(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & pense$DEP_ADMIN==2)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_4vars",
+                VAR_EXTRA="Dependência Administrativa",
+                VALOR_EXTRA="Privada")
+  
+  tabela1 <- rbind(tabela1, tt)
+  
+  tabela2 <- data.frame()
+  
+  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$B01001A==1)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_3vars",
+                NOM_VAR_LIN="Sexo",
+                VETOR_LIN="Masculino")
+  
+  tabela2 <- rbind(tabela2, tt)
+  
+  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$B01001A==2)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_3vars",
+                NOM_VAR_LIN="Sexo",
+                VETOR_LIN="Feminino")
+  
+  tabela2 <- rbind(tabela2, tt)
+  
+  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$DEP_ADMIN==1)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_3vars",
+                NOM_VAR_LIN="Dependência Administrativa",
+                VETOR_LIN="Pública")
+  
+  tabela2 <- rbind(tabela2, tt)
+  
+  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$DEP_ADMIN==2)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_3vars",
+                NOM_VAR_LIN="Dependência Administrativa",
+                VETOR_LIN="Privada")
+  
+  tabela2 <- rbind(tabela2, tt)
+  
+  tabela3 <- data.frame()
+  
+  tt <- modelo3(DESENHO=subset(desenho_validos,
+                               (var!=-2 & var!=-1
+                                & pense$B01001A==1)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_3vars",
+                NOM_VAR_LIN="Sexo",
+                VETOR_LIN="Masculino")
+  
+  tabela3 <- rbind(tabela3, tt)
+  
+  tt <- modelo3(DESENHO=subset(desenho_validos,
+                               (var!=-2 & var!=-1
+                                & pense$B01001A==2)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_3vars",
+                NOM_VAR_LIN="Sexo",
+                VETOR_LIN="Feminino")
+  
+  tabela3 <- rbind(tabela3, tt)
+  
+  tt <- modelo3(DESENHO=subset(desenho_validos,
+                               (var!=-2 & var!=-1
+                                & pense$DEP_ADMIN==1)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_3vars",
+                NOM_VAR_LIN="Dependência Administrativa",
+                VETOR_LIN="Pública")
+  
+  tabela3 <- rbind(tabela3, tt)
+  
+  tt <- modelo3(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$DEP_ADMIN==2)),
+                VAR_COL=var_string,
+                NOME_VAR_COL=var_titulo,
+                VETOR_COL=valor,
+                FILTRO=filtragem,
+                fun_estima="estima_pct",
+                fun_arruma="tab_3vars",
+                NOM_VAR_LIN="Dependência Administrativa",
+                VETOR_LIN="Privada")
+  
+  tabela3 <- rbind(tabela3, tt)
+  return(list("tabela1"=tabela1, "tabela2"=tabela2, "tabela3"=tabela3))
+  
+}
