@@ -196,6 +196,62 @@ for (i in 1:nrow(pense)){
 pense$SABE <- factor(sabe, c("Abandono", "Sim", "Não", "Sem resposta"),
                        ordered=T)
 
+# Ajuste para tabela 2.3.1
+
+entende <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B07004[i])){
+    entende[i] <- NA
+  }
+  else if (pense$B07004[i]==-2){
+    entende[i] <- "Abandono"
+  }
+  else if (pense$B07004[i]==1 | pense$B07004[i]==2){
+    entende[i] <- "Não"
+  }
+  else if (pense$B07004[i]==9){
+    entende[i] <- "Sem resposta"
+  }
+  else{
+    entende[i] <- "Sim"
+  }
+}
+
+pense$ENTENDE <- factor(entende, c("Abandono", "Sim", "Não", "Sem resposta"),
+                     ordered=T)
+
+# Ajuste para tabela 2.4.1
+
+prestativos <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B07006[i])){
+    prestativos[i] <- NA
+  }
+  else if (pense$B07006[i]==-2){
+    prestativos[i] <- "Abandono"
+  }
+  else if (pense$B07006[i]==1){
+    prestativos[i] <- "Nunca"
+  }
+  else if (pense$B07006[i]==2 | pense$B07006[i]==3){
+    prestativos[i] <- "Raramente ou às vezes"
+  }
+  else if (pense$B07006[i]==4 | pense$B07006[i]==5){
+    prestativos[i] <- "Quase sempre ou sempre"
+  }
+  else{
+    prestativos[i] <- "Sem Resposta"
+  }
+}
+
+pense$PRESTATIVOS <- factor(prestativos, c("Abandono", "Nunca",
+                                           "Raramente ou às vezes",
+                                           "Quase sempre ou sempre",
+                                           "Sem resposta"),
+                        ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
@@ -269,4 +325,6 @@ instrucao_mae <- c("Nenhuma instrução ou EF incompleto",
                    "EM completo ou ES incompleto",
                    "ES completo", "Não sei")
 
-faltou=c("Sim", "Não")
+prestativos <- c("Nunca",
+                 "Raramente ou às vezes",
+                 "Quase sempre ou sempre")
