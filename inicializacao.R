@@ -252,6 +252,100 @@ pense$PRESTATIVOS <- factor(prestativos, c("Abandono", "Nunca",
                                            "Sem Resposta"),
                         ordered=T)
 
+# Ajuste para tabela 3.2.1
+
+bebidas <- c()
+
+for (i in 1:nrow(pense)){
+  c <- 0
+  if (is.na(pense$B02028[i])){
+    bebidas[i] <- NA
+  }
+  else{
+    if (pense$B02028[i]==1){
+      c <- c+1
+    }
+    if (pense$B02029[i]==1){
+      c <- c+1
+    }
+    if (pense$B02030[i]==1){
+      c <- c+1
+    }
+    if (pense$B02031[i]==1){
+      c <- c+1
+    }
+    if (pense$B02032[i]==1){
+      c <- c+1
+    }
+    bebidas[i] <- c
+  }
+}
+
+Bebidas <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(bebidas[i])){
+    Bebidas[i] <- NA
+  }
+  else if (bebidas[i]==0){
+    Bebidas[i] <- "Nenhuma bebida"
+  }
+  else if (bebidas[i]==1){
+    Bebidas[i] <- "1 bebida"
+  }
+  else{
+    Bebidas[i] <- "2 bebidas ou mais"
+  }
+}
+
+pense$BEBIDAS <- factor(Bebidas, c("Nenhuma bebida",
+                                   "1 bebida", "2 bebidas ou mais"),
+                            ordered=T)
+
+# Ajuste para tabela 3.4.1
+
+comidas_ind <- c()
+
+for (i in 1:nrow(pense)){
+  c <- 0
+  if (is.na(pense$B02033[i])){
+    comidas_ind[i] <- NA
+  }
+  else{
+    if (pense$B02033[i]==1){
+      c <- c+1
+    }
+    if (pense$B02034[i]==1){
+      c <- c+1
+    }
+    if (pense$B02035[i]==1){
+      c <- c+1
+    }
+    comidas_ind[i] <- c
+  }
+}
+
+Comidas_Ind <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(comidas_ind[i])){
+    Comidas_Ind[i] <- NA
+  }
+  else if (comidas_ind[i]==0){
+    Comidas_Ind[i] <- "Nenhum alimento"
+  }
+  else if (comidas_ind[i]==1){
+    Comidas_Ind[i] <- "1 alimento"
+  }
+  else{
+    Comidas_Ind[i] <- "2 alimentos ou mais"
+  }
+}
+
+pense$COMIDAS_IND <- factor(Comidas_Ind, c("Nenhum alimento",
+                                   "1 alimento", "2 alimentos ou mais"),
+                        ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
