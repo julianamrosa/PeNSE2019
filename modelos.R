@@ -247,6 +247,7 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   tabela1 <- data.frame()
   
   tt <- modelo1(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
                                                  & pense$B01001A==1)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
@@ -259,6 +260,7 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   tabela1 <- rbind(tabela1, tt)
   
   tt <- modelo1(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
                                                  & pense$B01001A==2)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
@@ -272,6 +274,7 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   tabela1 <- rbind(tabela1, tt)
   
   tt <- modelo1(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
                                                  & pense$DEP_ADMIN==1)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
@@ -285,6 +288,7 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   tabela1 <- rbind(tabela1, tt)
   
   tt <- modelo1(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
                                                  & pense$DEP_ADMIN==2)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
@@ -299,7 +303,9 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   
   tabela2 <- data.frame()
   
-  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$B01001A==1)),
+  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
+                                                 & pense$B01001A==1)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
                 VETOR_COL=valor,
@@ -311,7 +317,9 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   
   tabela2 <- rbind(tabela2, tt)
   
-  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$B01001A==2)),
+  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
+                                                 & pense$B01001A==2)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
                 VETOR_COL=valor,
@@ -323,7 +331,9 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   
   tabela2 <- rbind(tabela2, tt)
   
-  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$DEP_ADMIN==1)),
+  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
+                                                 & pense$DEP_ADMIN==1)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
                 VETOR_COL=valor,
@@ -335,7 +345,9 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   
   tabela2 <- rbind(tabela2, tt)
   
-  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$DEP_ADMIN==2)),
+  tt <- modelo2(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
+                                                 & pense$DEP_ADMIN==2)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
                 VETOR_COL=valor,
@@ -351,6 +363,7 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   
   tt <- modelo3(DESENHO=subset(desenho_validos,
                                (var!=-2 & var!=-1
+                                & var!="Abandono"
                                 & pense$B01001A==1)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
@@ -365,6 +378,7 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   
   tt <- modelo3(DESENHO=subset(desenho_validos,
                                (var!=-2 & var!=-1
+                                & var!="Abandono"
                                 & pense$B01001A==2)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
@@ -379,6 +393,7 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   
   tt <- modelo3(DESENHO=subset(desenho_validos,
                                (var!=-2 & var!=-1
+                                & var!="Abandono"
                                 & pense$DEP_ADMIN==1)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
@@ -391,7 +406,9 @@ modelo5 <- function(var, var_string, var_titulo, valor, filtragem){ #var é do t
   
   tabela3 <- rbind(tabela3, tt)
   
-  tt <- modelo3(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1 & pense$DEP_ADMIN==2)),
+  tt <- modelo3(DESENHO=subset(desenho_validos, (var!=-2 & var!=-1
+                                                 & var!="Abandono"
+                                                 & pense$DEP_ADMIN==2)),
                 VAR_COL=var_string,
                 NOME_VAR_COL=var_titulo,
                 VETOR_COL=valor,

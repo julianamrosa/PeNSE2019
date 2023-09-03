@@ -261,6 +261,11 @@ for (i in 1:nrow(pense)){
   if (is.na(pense$B02028[i])){
     bebidas[i] <- NA
   }
+  else if (pense$B02028[i]==-2 & pense$B02029[i]==-2
+           & pense$B02030[i]==-2 & pense$B02031[i]==-2
+           & pense$B02032[i]==-2){
+    bebidas[i] <- -2
+  }
   else{
     if (pense$B02028[i]==1){
       c <- c+1
@@ -293,12 +298,15 @@ for (i in 1:nrow(pense)){
   else if (bebidas[i]==1){
     Bebidas[i] <- "1 bebida"
   }
-  else{
+  else if (bebidas[i]>=2){
     Bebidas[i] <- "2 bebidas ou mais"
+  }
+  else{
+    Bebidas[i] <- "Abandono"
   }
 }
 
-pense$BEBIDAS <- factor(Bebidas, c("Nenhuma bebida",
+pense$BEBIDAS <- factor(Bebidas, c("Abandono", "Nenhuma bebida",
                                    "1 bebida", "2 bebidas ou mais"),
                             ordered=T)
 
@@ -310,6 +318,10 @@ for (i in 1:nrow(pense)){
   c <- 0
   if (is.na(pense$B02033[i])){
     comidas_ind[i] <- NA
+  }
+  else if (pense$B02033[i]==-2 & pense$B02034[i]==-2
+           & pense$B02035[i]==-2){
+    comidas_ind[i] <- -2
   }
   else{
     if (pense$B02033[i]==1){
@@ -337,13 +349,182 @@ for (i in 1:nrow(pense)){
   else if (comidas_ind[i]==1){
     Comidas_Ind[i] <- "1 alimento"
   }
-  else{
+  else if (comidas_ind[i]>=2){
     Comidas_Ind[i] <- "2 alimentos ou mais"
+  }
+  else{
+    Comidas_Ind[i] <- "Abandono"
   }
 }
 
-pense$COMIDAS_IND <- factor(Comidas_Ind, c("Nenhum alimento",
+pense$COMIDAS_IND <- factor(Comidas_Ind, c("Abandono", "Nenhum alimento",
                                    "1 alimento", "2 alimentos ou mais"),
+                        ordered=T)
+
+# Ajuste para tabela 3.6.1
+
+comidas_ind2 <- c()
+
+for (i in 1:nrow(pense)){
+  c <- 0
+  if (is.na(pense$B02036[i])){
+    comidas_ind2[i] <- NA
+  }
+  else if (pense$B02036[i]==-2 & pense$B02037[i]==-2
+           & pense$B02038[i]==-2 & pense$B02039[i]==-2
+           & pense$B02040[i]==-2){
+    comidas_ind2[i] <- -2
+  }
+  else{
+    if (pense$B02036[i]==1){
+      c <- c+1
+    }
+    if (pense$B02037[i]==1){
+      c <- c+1
+    }
+    if (pense$B02038[i]==1){
+      c <- c+1
+    }
+    if (pense$B02039[i]==1){
+      c <- c+1
+    }
+    if (pense$B02040[i]==1){
+      c <- c+1
+    }
+    comidas_ind2[i] <- c
+  }
+}
+
+Comidas_Ind2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(comidas_ind2[i])){
+    Comidas_Ind2[i] <- NA
+  }
+  else if (comidas_ind2[i]==0){
+    Comidas_Ind2[i] <- "Nenhum alimento"
+  }
+  else if (comidas_ind2[i]==1){
+    Comidas_Ind2[i] <- "1 alimento"
+  }
+  else if (comidas_ind2[i]>=2){
+    Comidas_Ind2[i] <- "2 alimentos ou mais"
+  }
+  else{
+    Comidas_Ind2[i] <- "Abandono"
+  }
+}
+
+pense$SALGADOS_IND <- factor(Comidas_Ind2, c("Abandono", "Nenhum alimento",
+                                           "1 alimento", "2 alimentos ou mais"),
+                            ordered=T)
+
+# Ajuste para a tabela 3.7.1
+
+consumiu <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$COMIDAS_IND[i])){
+    consumiu[i] <- NA
+  }
+  else if (pense$COMIDAS_IND[i]=="Nenhum alimento"
+           & pense$SALGADOS_IND[i]=="Nenhum alimento"
+           & pense$BEBIDAS[i]=="Nenhuma bebida"){
+    consumiu[i] <- "Não"
+  }
+  else if (pense$COMIDAS_IND[i]=="Abandono"
+           & pense$SALGADOS_IND[i]=="Abandono"
+           & pense$BEBIDAS[i]=="Abandono"){
+    consumiu[i] <- "Abandono"
+  }
+  else{
+    consumiu[i] <- "Sim"
+  }
+}
+
+pense$CONSUMIU <- factor(consumiu, c("Abandono", "Sim", "Não"),
+                             ordered=T)
+
+# Ajuste para a tabela 3.9.1
+
+feijao <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02001[i])){
+    feijao[i] <- NA
+  }
+  else if (pense$B02001[i]==6 | pense$B02001[i]==7
+           | pense$B02001[i]==8){
+    feijao[i] <- "5 dias ou mais"
+  }
+  else if (pense$B02001[i]==1){
+    feijao[i] <- "Nenhum dia"
+  }
+  else if (pense$B02001[i]==2){
+    feijao[i] <- "1 dia"
+  }
+  else if (pense$B02001[i]==3){
+    feijao[i] <- "2 dias"
+  }
+  else if (pense$B02001[i]==4){
+    feijao[i] <- "3 dias"
+  }
+  else if (pense$B02001[i]==5){
+    feijao[i] <- "4 dias"
+  }
+  else if (pense$B02001[i]==-2){
+    feijao[i] <- "Abandono"
+  }
+  else{
+    feijao[i] <- "Sem resposta"
+  }
+}
+
+pense$FEIJAO <- factor(feijao, c("Abandono", "Nenhum dia",
+                                 "1 dia", "2 dias", "3 dias",
+                                 "4 dias", "5 dias ou mais",
+                                 "Sem resposta"),
+                       ordered=T)
+
+# Ajuste para a tabela 3.11.1
+
+legumes <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02004B[i])){
+    legumes[i] <- NA
+  }
+  else if (pense$B02004B[i]==6 | pense$B02004B[i]==7
+           | pense$B02004B[i]==8){
+    legumes[i] <- "5 dias ou mais"
+  }
+  else if (pense$B02004B[i]==1){
+    legumes[i] <- "Nenhum dia"
+  }
+  else if (pense$B02004B[i]==2){
+    legumes[i] <- "1 dia"
+  }
+  else if (pense$B02004B[i]==3){
+    legumes[i] <- "2 dias"
+  }
+  else if (pense$B02004B[i]==4){
+    legumes[i] <- "3 dias"
+  }
+  else if (pense$B02004B[i]==5){
+    legumes[i] <- "4 dias"
+  }
+  else if (pense$B02004B[i]==-2){
+    legumes[i] <- "Abandono"
+  }
+  else{
+    legumes[i] <- "Sem resposta"
+  }
+}
+
+pense$LEGUMES <- factor(legumes, c("Abandono", "Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais",
+                                   "Sem resposta"),
                         ordered=T)
 
 # Objeto inicial
