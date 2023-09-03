@@ -527,6 +527,170 @@ pense$LEGUMES <- factor(legumes, c("Abandono", "Nenhum dia",
                                    "Sem resposta"),
                         ordered=T)
 
+# Ajuste para a tabela 3.13.1
+
+guloseimas <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02010A[i])){
+    guloseimas[i] <- NA
+  }
+  else if (pense$B02010A[i]==6 | pense$B02010A[i]==7
+           | pense$B02010A[i]==8){
+    guloseimas[i] <- "5 dias ou mais"
+  }
+  else if (pense$B02010A[i]==1){
+    guloseimas[i] <- "Nenhum dia"
+  }
+  else if (pense$B02010A[i]==2){
+    guloseimas[i] <- "1 dia"
+  }
+  else if (pense$B02010A[i]==3){
+    guloseimas[i] <- "2 dias"
+  }
+  else if (pense$B02010A[i]==4){
+    guloseimas[i] <- "3 dias"
+  }
+  else if (pense$B02010A[i]==5){
+    guloseimas[i] <- "4 dias"
+  }
+  else if (pense$B02010A[i]==-2){
+    guloseimas[i] <- "Abandono"
+  }
+  else{
+    guloseimas[i] <- "Sem resposta"
+  }
+}
+
+pense$GULOSEIMAS <- factor(guloseimas, c("Abandono", "Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais",
+                                   "Sem resposta"),
+                        ordered=T)
+
+# Ajuste para a tabela 3.15.1
+
+frutas <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02011[i])){
+    frutas[i] <- NA
+  }
+  else if (pense$B02011[i]==6 | pense$B02011[i]==7
+           | pense$B02011[i]==8){
+    frutas[i] <- "5 dias ou mais"
+  }
+  else if (pense$B02011[i]==1){
+    frutas[i] <- "Nenhum dia"
+  }
+  else if (pense$B02011[i]==2){
+    frutas[i] <- "1 dia"
+  }
+  else if (pense$B02011[i]==3){
+    frutas[i] <- "2 dias"
+  }
+  else if (pense$B02011[i]==4){
+    frutas[i] <- "3 dias"
+  }
+  else if (pense$B02011[i]==5){
+    frutas[i] <- "4 dias"
+  }
+  else if (pense$B02011[i]==-2){
+    frutas[i] <- "Abandono"
+  }
+  else{
+    frutas[i] <- "Sem resposta"
+  }
+}
+
+pense$FRUTAS <- factor(frutas, c("Abandono", "Nenhum dia",
+                                         "1 dia", "2 dias", "3 dias",
+                                         "4 dias", "5 dias ou mais",
+                                         "Sem resposta"),
+                           ordered=T)
+
+# Ajuste para a tabela 3.17.1
+
+refri <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02013[i])){
+    refri[i] <- NA
+  }
+  else if (pense$B02013[i]==6 | pense$B02013[i]==7
+           | pense$B02013[i]==8){
+    refri[i] <- "5 dias ou mais"
+  }
+  else if (pense$B02013[i]==1){
+    refri[i] <- "Nenhum dia"
+  }
+  else if (pense$B02013[i]==2){
+    refri[i] <- "1 dia"
+  }
+  else if (pense$B02013[i]==3){
+    refri[i] <- "2 dias"
+  }
+  else if (pense$B02013[i]==4){
+    refri[i] <- "3 dias"
+  }
+  else if (pense$B02013[i]==5){
+    refri[i] <- "4 dias"
+  }
+  else if (pense$B02013[i]==-2){
+    refri[i] <- "Abandono"
+  }
+  else{
+    refri[i] <- "Sem resposta"
+  }
+}
+
+pense$REFRI <- factor(refri, c("Abandono", "Nenhum dia",
+                                 "1 dia", "2 dias", "3 dias",
+                                 "4 dias", "5 dias ou mais",
+                                 "Sem resposta"),
+                       ordered=T)
+
+# Ajuste para a tabela 3.19.1
+
+fastfood <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02023A[i])){
+    fastfood[i] <- NA
+  }
+  else if (pense$B02023A[i]==6 | pense$B02023A[i]==7
+           | pense$B02023A[i]==8){
+    fastfood[i] <- "5 dias ou mais"
+  }
+  else if (pense$B02023A[i]==1){
+    fastfood[i] <- "Nenhum dia"
+  }
+  else if (pense$B02023A[i]==2){
+    fastfood[i] <- "1 dia"
+  }
+  else if (pense$B02023A[i]==3){
+    fastfood[i] <- "2 dias"
+  }
+  else if (pense$B02023A[i]==4){
+    fastfood[i] <- "3 dias"
+  }
+  else if (pense$B02023A[i]==5){
+    fastfood[i] <- "4 dias"
+  }
+  else if (pense$B02023A[i]==-2){
+    fastfood[i] <- "Abandono"
+  }
+  else{
+    fastfood[i] <- "Sem resposta"
+  }
+}
+
+pense$FASTFOOD <- factor(fastfood, c("Abandono", "Nenhum dia",
+                               "1 dia", "2 dias", "3 dias",
+                               "4 dias", "5 dias ou mais",
+                               "Sem resposta"),
+                      ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,

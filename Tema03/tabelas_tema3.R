@@ -484,17 +484,6 @@ saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 ## TABELA 3.11.x ##
 
 table(pense$LEGUMES) #freq do consumo de legumes/verduras
@@ -582,3 +571,348 @@ saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
 
 
 
+## TABELA 3.13.x ##
+
+table(pense$GULOSEIMAS) #freq do consumo de guloseimas doces
+
+tabela_3131 <- modelo1(DESENHO=subset(desenho_validos,
+                                      (pense$GULOSEIMAS!="Abandono")),
+                       VAR_COL="GULOSEIMAS",
+                       NOME_VAR_COL="Frequência do consumo de guloseimas doces",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_3vars")
+
+tabela_3132 <- modelo2(DESENHO=subset(desenho_validos,
+                                      (pense$GULOSEIMAS!="Abandono")),
+                       VAR_COL="GULOSEIMAS",
+                       NOME_VAR_COL="Frequência do consumo de guloseimas doces",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_2vars")
+
+tabela_3133 <- modelo3(DESENHO=subset(desenho_validos,
+                                      (pense$GULOSEIMAS!="Abandono")),
+                       VAR_COL="GULOSEIMAS",
+                       NOME_VAR_COL="Frequência do consumo de guloseimas doces",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_2vars")
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.13.1")
+writeData(wb,"3.13.1",tabela_3131)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.13.2")
+writeData(wb,"3.13.2",tabela_3132)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.13.3")
+writeData(wb,"3.13.3",tabela_3133)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.14.x ##
+
+table(pense$GULOSEIMAS) #consumo de guloseimas doces (>=5 dias)
+
+startTime <- Sys.time()
+tabelas_314x <- modelo5(var=pense$GULOSEIMAS,
+                        var_string="GULOSEIMAS",
+                        var_titulo="Consumiu guloseimas doces em 5 dias ou mais",
+                        valor="Sim",
+                        filtragem=7)
+endTime <- Sys.time()
+
+tabela3141 <- tabelas_314x$tabela1
+tabela3142 <- tabelas_314x$tabela2
+tabela3143 <- tabelas_314x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.14.1")
+writeData(wb,"3.14.1",tabela3141)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.14.2")
+writeData(wb,"3.14.2",tabela3142)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.14.3")
+writeData(wb,"3.14.3",tabela3143)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.15.x ##
+
+table(pense$FRUTAS) #freq do consumo de frutas
+
+tabela_3151 <- modelo1(DESENHO=subset(desenho_validos,
+                                      (pense$FRUTAS!="Abandono")),
+                       VAR_COL="FRUTAS",
+                       NOME_VAR_COL="Frequência do consumo de frutas",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_3vars")
+
+tabela_3152 <- modelo2(DESENHO=subset(desenho_validos,
+                                      (pense$FRUTAS!="Abandono")),
+                       VAR_COL="FRUTAS",
+                       NOME_VAR_COL="Frequência do consumo de frutas",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_2vars")
+
+tabela_3153 <- modelo3(DESENHO=subset(desenho_validos,
+                                      (pense$FRUTAS!="Abandono")),
+                       VAR_COL="FRUTAS",
+                       NOME_VAR_COL="Frequência do consumo de frutas",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_2vars")
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.15.1")
+writeData(wb,"3.15.1",tabela_3151)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.15.2")
+writeData(wb,"3.15.2",tabela_3152)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.15.3")
+writeData(wb,"3.15.3",tabela_3153)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.16.x ##
+
+table(pense$FRUTAS) #consumo de frutas (>=5 dias)
+
+startTime <- Sys.time()
+tabelas_316x <- modelo5(var=pense$FRUTAS,
+                        var_string="FRUTAS",
+                        var_titulo="Consumiu frutas em 5 dias ou mais",
+                        valor="Sim",
+                        filtragem=7)
+endTime <- Sys.time()
+
+tabela3161 <- tabelas_316x$tabela1
+tabela3162 <- tabelas_316x$tabela2
+tabela3163 <- tabelas_316x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.16.1")
+writeData(wb,"3.16.1",tabela3161)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.16.2")
+writeData(wb,"3.16.2",tabela3162)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.16.3")
+writeData(wb,"3.16.3",tabela3163)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.17.x ##
+
+table(pense$REFRI) #freq do consumo de refrigerante
+
+tabela_3171 <- modelo1(DESENHO=subset(desenho_validos,
+                                      (pense$REFRI!="Abandono")),
+                       VAR_COL="REFRI",
+                       NOME_VAR_COL="Frequência do consumo de refrigerante",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_3vars")
+
+tabela_3172 <- modelo2(DESENHO=subset(desenho_validos,
+                                      (pense$REFRI!="Abandono")),
+                       VAR_COL="REFRI",
+                       NOME_VAR_COL="Frequência do consumo de refrigerante",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_2vars")
+
+tabela_3173 <- modelo3(DESENHO=subset(desenho_validos,
+                                      (pense$REFRI!="Abandono")),
+                       VAR_COL="REFRI",
+                       NOME_VAR_COL="Frequência do consumo de refrigerante",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_2vars")
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.17.1")
+writeData(wb,"3.17.1",tabela_3171)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.17.2")
+writeData(wb,"3.17.2",tabela_3172)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.17.3")
+writeData(wb,"3.17.3",tabela_3173)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.18.x ##
+
+table(pense$REFRI) #consumo de refrigerante (>=5 dias)
+
+startTime <- Sys.time()
+tabelas_318x <- modelo5(var=pense$REFRI,
+                        var_string="REFRI",
+                        var_titulo="Consumiu refrigerante em 5 dias ou mais",
+                        valor="Sim",
+                        filtragem=7)
+endTime <- Sys.time()
+
+tabela3181 <- tabelas_318x$tabela1
+tabela3182 <- tabelas_318x$tabela2
+tabela3183 <- tabelas_318x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.18.1")
+writeData(wb,"3.18.1",tabela3181)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.18.2")
+writeData(wb,"3.18.2",tabela3182)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.18.3")
+writeData(wb,"3.18.3",tabela3183)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.19.x ##
+
+table(pense$FASTFOOD) #freq do consumo de fast food
+
+tabela_3191 <- modelo1(DESENHO=subset(desenho_validos,
+                                      (pense$FASTFOOD!="Abandono")),
+                       VAR_COL="FASTFOOD",
+                       NOME_VAR_COL="Frequência do consumo de fast food",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_3vars")
+
+tabela_3192 <- modelo2(DESENHO=subset(desenho_validos,
+                                      (pense$FASTFOOD!="Abandono")),
+                       VAR_COL="FASTFOOD",
+                       NOME_VAR_COL="Frequência do consumo de fast food",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_2vars")
+
+tabela_3193 <- modelo3(DESENHO=subset(desenho_validos,
+                                      (pense$FASTFOOD!="Abandono")),
+                       VAR_COL="FASTFOOD",
+                       NOME_VAR_COL="Frequência do consumo de fast food",
+                       VETOR_COL=c("Nenhum dia",
+                                   "1 dia", "2 dias", "3 dias",
+                                   "4 dias", "5 dias ou mais"),
+                       FILTRO=2:7,
+                       fun_estima="estima_pct",
+                       fun_arruma="tab_2vars")
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.19.1")
+writeData(wb,"3.19.1",tabela_3191)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.19.2")
+writeData(wb,"3.19.2",tabela_3192)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.19.3")
+writeData(wb,"3.19.3",tabela_3193)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.20.x ##
+#essa tabela está com erro na planilha deles --> diz >=3 dias, mas é >=5 dias
+table(pense$FASTFOOD) #consumo de refrigerante (>=5 dias)
+
+startTime <- Sys.time()
+tabelas_320x <- modelo5(var=pense$FASTFOOD,
+                        var_string="FASTFOOD",
+                        var_titulo="Consumiu fast food em 5 dias ou mais",
+                        valor="Sim",
+                        filtragem=7)
+endTime <- Sys.time()
+
+tabela3201 <- tabelas_320x$tabela1
+tabela3202 <- tabelas_320x$tabela2
+tabela3203 <- tabelas_320x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.20.1")
+writeData(wb,"3.20.1",tabela3201)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.20.2")
+writeData(wb,"3.20.2",tabela3202)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.20.3")
+writeData(wb,"3.20.3",tabela3203)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
