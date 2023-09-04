@@ -691,6 +691,196 @@ pense$FASTFOOD <- factor(fastfood, c("Abandono", "Nenhum dia",
                                "Sem resposta"),
                       ordered=T)
 
+# Ajuste para a tabela 3.21.1
+
+cafe <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02019A[i])){
+    cafe[i] <- NA
+  }
+  else if (pense$B02019A[i]==-2){
+    cafe[i] <- "Abandono"
+  }
+  else if (pense$B02019A[i]==9){
+    cafe[i] <- "Sem resposta"
+  }
+  else if (pense$B02019A[i]==1 | pense$B02019A[i]==2){
+    cafe[i] <- "5 dias ou mais"
+  }
+  else{
+    cafe[i] <- "Menos de 5 dias"
+  }
+}
+
+pense$CAFE <- factor(cafe, c("Abandono", "Menos de 5 dias", "5 dias ou mais",
+                                     "Sem resposta"),
+                         ordered=T)
+
+# Ajuste para a tabela 3.22.1
+
+jantar <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02017A[i])){
+    jantar[i] <- NA
+  }
+  else if (pense$B02017A[i]==-2){
+    jantar[i] <- "Abandono"
+  }
+  else if (pense$B02017A[i]==9){
+    jantar[i] <- "Sem resposta"
+  }
+  else if (pense$B02017A[i]==1 | pense$B02017A[i]==2){
+    jantar[i] <- "5 dias ou mais"
+  }
+  else{
+    jantar[i] <- "Menos de 5 dias"
+  }
+}
+
+pense$JANTAR <- factor(jantar, c("Abandono", "Menos de 5 dias", "5 dias ou mais",
+                             "Sem resposta"),
+                     ordered=T)
+
+# Ajuste para a tabela 3.23.1
+
+tv <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02018B[i])){
+    tv[i] <- NA
+  }
+  else if (pense$B02018B[i]==-2){
+    tv[i] <- "Abandono"
+  }
+  else if (pense$B02018B[i]==9){
+    tv[i] <- "Sem resposta"
+  }
+  else if (pense$B02018B[i]==5){
+    tv[i] <- "Não"
+  }
+  else{
+    tv[i] <- "Sim"
+  }
+}
+
+pense$TV <- factor(tv, c("Abandono", "Sim", "Não",
+                                 "Sem resposta"),
+                       ordered=T)
+
+# Ajuste para a tabela 3.25.1
+
+merenda <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02020B[i])){
+    merenda[i] <- NA
+  }
+  else if (pense$B02020B[i]==-2 | pense$B02020B[i]==-1){
+    merenda[i] <- "Abandono"
+  }
+  else if (pense$B02020B[i]==9){
+    merenda[i] <- "Sem resposta"
+  }
+  else if (pense$B02020B[i]==5){
+    merenda[i] <- "Não"
+  }
+  else{
+    merenda[i] <- "Sim"
+  }
+}
+
+pense$MERENDA <- factor(merenda, c("Abandono", "Sim", "Não",
+                         "Sem resposta"),
+                   ordered=T)
+
+# Ajuste para a tabela 3.26.1
+
+merenda2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02020B[i])){
+    merenda2[i] <- NA
+  }
+  else if (pense$B02020B[i]==-2 | pense$B02020B[i]==-1){
+    merenda2[i] <- "Abandono"
+  }
+  else if (pense$B02020B[i]==9){
+    merenda2[i] <- "Sem resposta"
+  }
+  else if (pense$B02020B[i]==4 | pense$B02020B[i]==5){
+    merenda2[i] <- "Não ou raramente"
+  }
+  else if (pense$B02020B[i]==1 | pense$B02020B[i]==2){
+    merenda2[i] <- "3 dias ou mais"
+  }
+  else{
+    merenda2[i] <- "1 ou 2 dias"
+  }
+}
+
+pense$MERENDA2 <- factor(merenda2, c("Abandono", "Não ou raramente", "1 ou 2 dias",
+                                  "3 dias ou mais",  "Sem resposta"),
+                        ordered=T)
+
+# Ajuste para a tabela 3.27.1
+
+cantina <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02041[i])){
+    cantina[i] <- NA
+  }
+  else if (pense$B02041[i]==-2){
+    cantina[i] <- "Abandono"
+  }
+  else if (pense$B02041[i]==9){
+    cantina[i] <- "Sem resposta"
+  }
+  else if (pense$B02041[i]==5 | pense$B02041[i]==6){
+    cantina[i] <- "Não"
+  }
+  else{
+    cantina[i] <- "Sim"
+  }
+}
+
+pense$CANTINA <- factor(cantina, c("Abandono", "Sim", "Não",  "Sem resposta"),
+                         ordered=T)
+
+# Ajuste para a tabela 3.28.1
+
+cantina2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02041[i])){
+    cantina2[i] <- NA
+  }
+  else if (pense$B02041[i]==-2){
+    cantina2[i] <- "Abandono"
+  }
+  else if (pense$B02041[i]==9){
+    cantina2[i] <- "Sem resposta"
+  }
+  else if (pense$B02041[i]==6){
+    cantina2[i] <- "Não tem cantina"
+  }
+  else if (pense$B02041[i]==4 | pense$B02041[i]==5){
+    cantina2[i] <- "Não ou raramente"
+  }
+  else if (pense$B02041[i]==1 | pense$B02041[i]==2){
+    cantina2[i] <- "3 dias ou mais"
+  }
+  else{
+    cantina2[i] <- "1 ou 2 dias"
+  }
+}
+
+pense$CANTINA2 <- factor(cantina2, c("Abandono", "Não ou raramente", "1 ou 2 dias",
+                                     "3 dias ou mais", "Não tem cantina",  "Sem resposta"),
+                         ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,

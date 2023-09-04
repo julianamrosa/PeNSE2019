@@ -916,3 +916,379 @@ wb <- loadWorkbook("Tema03/Tema03.xlsx")
 addWorksheet(wb,"3.20.3")
 writeData(wb,"3.20.3",tabela3203)
 saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+
+## TABELA 3.21.x ##
+
+table(pense$CAFE) #toma café da manhã (>=5 dias)
+
+startTime <- Sys.time()
+tabelas_321x <- modelo5(var=pense$CAFE,
+                        var_string="CAFE",
+                        var_titulo="Toma café da manhã em 5 dias ou mais na semana",
+                        valor="Sim",
+                        filtragem=3)
+endTime <- Sys.time()
+
+tabela3211 <- tabelas_321x$tabela1
+tabela3212 <- tabelas_321x$tabela2
+tabela3213 <- tabelas_321x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.21.1")
+writeData(wb,"3.21.1",tabela3211)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.21.2")
+writeData(wb,"3.21.2",tabela3212)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.21.3")
+writeData(wb,"3.21.3",tabela3213)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.22.x ##
+
+table(pense$JANTAR) #janta com os pais (>=5 dias)
+
+startTime <- Sys.time()
+tabelas_322x <- modelo5(var=pense$JANTAR,
+                        var_string="JANTAR",
+                        var_titulo="Janta com os pais em 5 dias ou mais na semana",
+                        valor="Sim",
+                        filtragem=3)
+endTime <- Sys.time()
+
+tabela3221 <- tabelas_322x$tabela1
+tabela3222 <- tabelas_322x$tabela2
+tabela3223 <- tabelas_322x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.22.1")
+writeData(wb,"3.22.1",tabela3221)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.22.2")
+writeData(wb,"3.22.2",tabela3222)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.22.3")
+writeData(wb,"3.22.3",tabela3223)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.23.x ##
+
+table(pense$TV) #faz refeições concomitante a outras atividades (>=5 dias)
+
+startTime <- Sys.time()
+tabelas_323x <- modelo5(var=pense$TV,
+                        var_string="TV",
+                        var_titulo="Costuma fazer refeições concomitante a outras atividades",
+                        valor="Sim",
+                        filtragem=2)
+endTime <- Sys.time()
+
+tabela3231 <- tabelas_323x$tabela1
+tabela3232 <- tabelas_323x$tabela2
+tabela3233 <- tabelas_323x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.23.1")
+writeData(wb,"3.23.1",tabela3231)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.23.2")
+writeData(wb,"3.23.2",tabela3232)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.23.3")
+writeData(wb,"3.23.3",tabela3233)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.24.x ##
+
+table(pense$B02021A) #a escola oferece comida?
+
+startTime <- Sys.time()
+tabelas_324x <- modelo5(var=pense$B02021A,
+                        var_string="B02021A",
+                        var_titulo="A escola oferece comida aos alunos?",
+                        valor="Sim",
+                        filtragem=2)
+endTime <- Sys.time()
+
+tabela3241 <- tabelas_324x$tabela1
+tabela3242 <- tabelas_324x$tabela2
+tabela3243 <- tabelas_324x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.24.1")
+writeData(wb,"3.24.1",tabela3241)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.24.2")
+writeData(wb,"3.24.2",tabela3242)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.24.3")
+writeData(wb,"3.24.3",tabela3243)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.25.x ##
+
+table(pense$MERENDA) #come a comida oferecida pela escola
+
+startTime <- Sys.time()
+tabelas_325x <- modelo5(var=pense$MERENDA,
+                        var_string="MERENDA",
+                        var_titulo="Você come a comida oferecida pela escola?",
+                        valor="Sim",
+                        filtragem=2)
+endTime <- Sys.time()
+
+tabela3251 <- tabelas_325x$tabela1
+tabela3252 <- tabelas_325x$tabela2
+tabela3253 <- tabelas_325x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.25.1")
+writeData(wb,"3.25.1",tabela3251)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.25.2")
+writeData(wb,"3.25.2",tabela3252)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.25.3")
+writeData(wb,"3.25.3",tabela3253)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.26.x ##
+
+table(pense$MERENDA2) #freq com que os alunos comem a comida oferecida pela escola
+
+tabela_3261_pt1 <- modelo1(DESENHO=subset(desenho_validos, (pense$MERENDA2!="Abandono" & pense$DEP_ADMIN==1)),
+                          VAR_COL="MERENDA2",
+                          NOME_VAR_COL="Frequência com que os alunos comem a comida oferecida",
+                          VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                          FILTRO=2:4,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_4vars",
+                          VAR_EXTRA="Dependência Administrativa",
+                          VALOR_EXTRA="Pública")
+
+tabela_3261_pt2 <- modelo1(DESENHO=subset(desenho_validos, (pense$MERENDA2!="Abandono" & pense$DEP_ADMIN==2)),
+                          VAR_COL="MERENDA2",
+                          NOME_VAR_COL="Frequência com que os alunos comem a comida oferecida",
+                          VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                          FILTRO=2:4,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_4vars",
+                          VAR_EXTRA="Dependência Administrativa",
+                          VALOR_EXTRA="Privada")
+
+tabela_3261 <- rbind(tabela_3261_pt1, tabela_3261_pt2)
+
+tabela_3262_pt1 <- modelo2(DESENHO=subset(desenho_validos, (pense$MERENDA2!="Abandono" & pense$DEP_ADMIN==1)),
+                          VAR_COL="MERENDA2",
+                          NOME_VAR_COL="Frequência com que os alunos comem a comida oferecida",
+                          VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                          FILTRO=2:4,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_3vars",
+                          NOM_VAR_LIN="Dependência Administrativa",
+                          VETOR_LIN="Pública")
+
+tabela_3262_pt2 <- modelo2(DESENHO=subset(desenho_validos, (pense$MERENDA2!="Abandono" & pense$DEP_ADMIN==2)),
+                          VAR_COL="MERENDA2",
+                          NOME_VAR_COL="Frequência com que os alunos comem a comida oferecida",
+                          VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                          FILTRO=2:4,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_3vars",
+                          NOM_VAR_LIN="Dependência Administrativa",
+                          VETOR_LIN="Privada")
+
+tabela_3262 <- rbind(tabela_3262_pt1, tabela_3262_pt2)
+
+tabela_3263_pt1 <- modelo3(DESENHO=subset(desenho_validos, (pense$MERENDA2!="Abandono" & pense$DEP_ADMIN==1)),
+                          VAR_COL="MERENDA2",
+                          NOME_VAR_COL="Frequência com que os alunos comem a comida oferecida",
+                          VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                          FILTRO=2:4,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_3vars",
+                          NOM_VAR_LIN="Dependência Administrativa",
+                          VETOR_LIN="Pública")
+
+tabela_3263_pt2 <- modelo3(DESENHO=subset(desenho_validos, (pense$MERENDA2!="Abandono" & pense$DEP_ADMIN==2)),
+                          VAR_COL="MERENDA2",
+                          NOME_VAR_COL="Frequência com que os alunos comem a comida oferecida",
+                          VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                          FILTRO=2:4,
+                          fun_estima="estima_pct",
+                          fun_arruma="tab_3vars",
+                          NOM_VAR_LIN="Dependência Administrativa",
+                          VETOR_LIN="Privada")
+
+tabela_3263 <- rbind(tabela_3263_pt1, tabela_3263_pt2)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.26.1")
+writeData(wb,"3.26.1",tabela_3261)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.26.2")
+writeData(wb,"3.26.2",tabela_3262)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.26.3")
+writeData(wb,"3.26.3",tabela_3263)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.27.x ##
+
+table(pense$CANTINA) #compra comida na cantina da escola
+
+startTime <- Sys.time()
+tabelas_327x <- modelo5(var=pense$CANTINA,
+                        var_string="CANTINA",
+                        var_titulo="Você compra comida na cantina da escola?",
+                        valor="Sim",
+                        filtragem=2)
+endTime <- Sys.time()
+
+tabela3271 <- tabelas_327x$tabela1
+tabela3272 <- tabelas_327x$tabela2
+tabela3273 <- tabelas_327x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.27.1")
+writeData(wb,"3.27.1",tabela3271)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.27.2")
+writeData(wb,"3.27.2",tabela3272)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.27.3")
+writeData(wb,"3.27.3",tabela3273)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+
+## TABELA 3.28.x ##
+#não bateu!!
+table(pense$CANTINA2) #freq com que os alunos compram comida na cantina
+
+tabela_3281_pt1 <- modelo1(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono"
+                                                            & pense$CANTINA2!="Não tem cantina"
+                                                            & pense$DEP_ADMIN==1)),
+                           VAR_COL="CANTINA2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_4vars",
+                           VAR_EXTRA="Dependência Administrativa",
+                           VALOR_EXTRA="Pública")
+
+tabela_3281_pt2 <- modelo1(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==2)),
+                           VAR_COL="CANTINA2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_4vars",
+                           VAR_EXTRA="Dependência Administrativa",
+                           VALOR_EXTRA="Privada")
+
+tabela_3281 <- rbind(tabela_3281_pt1, tabela_3281_pt2)
+
+tabela_3282_pt1 <- modelo2(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==1)),
+                           VAR_COL="CANTINA2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Pública")
+
+tabela_3282_pt2 <- modelo2(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==2)),
+                           VAR_COL="CANTINA2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Privada")
+
+tabela_3282 <- rbind(tabela_3282_pt1, tabela_3282_pt2)
+
+tabela_3283_pt1 <- modelo3(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==1)),
+                           VAR_COL="CANTINA2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Pública")
+
+tabela_3283_pt2 <- modelo3(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==2)),
+                           VAR_COL="CANTINA2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Privada")
+
+tabela_3283 <- rbind(tabela_3283_pt1, tabela_3283_pt2)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.28.1")
+writeData(wb,"3.28.1",tabela_3281)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.28.2")
+writeData(wb,"3.28.2",tabela_3282)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.28.3")
+writeData(wb,"3.28.3",tabela_3283)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
