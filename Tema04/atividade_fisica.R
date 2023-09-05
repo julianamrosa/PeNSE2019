@@ -4,6 +4,11 @@ for (i in 1:nrow(pense)){
   if (is.na(pense$B03001A1[i])){
     ida[i] <- NA
   }
+  else if (pense$B03001A1[i]==1){
+    inferior <- 0
+    superior <- 0
+    ida[i] <- paste(inferior, "a", superior, "minutos")
+  }
   else if (pense$B03001A1[i] %in% c(-1, -2)
            | pense$B03002A1[i] %in% c(-1, -2)){
     ida[i] <- -2
@@ -55,6 +60,11 @@ volta <- c()
 for (i in 1:nrow(pense)){
   if (is.na(pense$B03001A2[i])){
     volta[i] <- NA
+  }
+  else if (pense$B03001A2[i]==1){
+    inferior <- 0
+    superior <- 0
+    volta[i] <- paste(inferior, "a", superior, "minutos")
   }
   else if (pense$B03001A2[i] %in% c(-1, -2)
            | pense$B03002A2[i] %in% c(-1, -2)){
@@ -111,6 +121,11 @@ ed_fis <- c()
 for (i in 1:nrow(pense)){
   if (is.na(pense$B03003A[i])){
     ed_fis[i] <- NA
+  }
+  else if (pense$B03003A[i]==1){
+    inferior <- 0
+    superior <- 0
+    ed_fis[i] <- paste(inferior, "a", superior, "minutos")
   }
   else if (pense$B03003A[i] %in% c(-1, -2)
            | pense$B03005B[i] %in% c(-1, -2)){
@@ -173,6 +188,11 @@ for (i in 1:nrow(pense)){
   if (is.na(pense$B03006B[i])){
     outras_ativ[i] <- NA
   }
+  else if (pense$B03006B[i]==1){
+    inferior <- 0
+    superior <- 0
+    outras_ativ[i] <- paste(inferior, "a", superior, "minutos")
+  }
   else if (pense$B03006B[i] %in% c(-1, -2)
            | pense$B03007A[i] %in% c(-1, -2)){
     outras_ativ[i] <- -2
@@ -225,6 +245,83 @@ table(volta)
 table(ed_fis)
 table(outras_ativ)
 
-#somar todas (inf com inf e sup com sup)
-#juntar categorias
-#fazer tabelas
+atividade <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(ida[i])){
+    atividade[i] <- NA
+  }
+  else if (ida[i]==-2 | volta[i]==-2 | ed_fis[i]==-2 | outras_ativ[i]==-2){
+    atividade[i] <- -2
+  }
+  else if (ida[i]==9 | volta[i]==9 | ed_fis[i]==9 | outras_ativ[i]==9){
+    atividade[i] <- 9
+  }
+  else{
+    temp1 <- strsplit(ida[i], " ", fixed=T)[[1]]
+    temp2 <- strsplit(volta[i], " ", fixed=T)[[1]]
+    temp3 <- strsplit(ed_fis[i], " ", fixed=T)[[1]]
+    temp4 <- strsplit(outras_ativ[i], " ", fixed=T)[[1]]
+    inf1 <- as.numeric(temp1[1])
+    inf2 <- as.numeric(temp2[1])
+    inf3 <- as.numeric(temp3[1])
+    inf4 <- as.numeric(temp4[1])
+    sup1 <- as.numeric(temp1[3])
+    sup2 <- as.numeric(temp2[3])
+    sup3 <- as.numeric(temp3[3])
+    sup4 <- as.numeric(temp4[3])
+    inferior <- inf1+inf2+inf3+inf4
+    superior <- sup1+sup2+sup3+sup4
+    atividade[i] <- paste(inferior, "a", superior, "minutos")
+  }
+}
+
+atividade2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(atividade[i])){
+    atividade2[i] <- NA
+  }
+  else if (atividade[i]=="-2"){
+    atividade2[i] <- "-2"
+  }
+  else if (atividade[i]=="9"){
+    atividade2[i] <- "9"
+  }
+  else{
+    inferior <- as.numeric(strsplit(atividade[i], " ", fixed=T)[[1]][1])
+    superior <- as.numeric(strsplit(atividade[i], " ", fixed=T)[[1]][3])
+    if (inferior==0 & superior==0){
+      atividade2[i] <- "Inativo"
+    }
+    else if (inferior>=300){
+      atividade2[i] <- "300 minutos ou mais"
+    }
+    else if (superior==0){
+      if (inferior %in% 1:149){
+        atividade2[i] <- "1 a 149 minutos"
+      }
+      else if (inferior %in% 150:299){
+        atividade2[i] <- "150 a 299 minutos"
+      }
+    }
+    else{
+      pm <- (inferior+superior)/2
+      if (pm %in% 1:149){
+        atividade2[i] <- "1 a 149 minutos"
+      }
+      else if (pm %in% 150:299){
+        atividade2[i] <- "150 a 299 minutos"
+      }
+      else{
+        atividade2[i] <- "300 minutos ou mais"
+      }
+    }
+  }
+}
+
+table(atividade2)
+
+pense$ATIVIDADE <- factor(atividade2, c("-2", "Inativo", "1 a 149 minutos", "150 a 299 minutos",
+                                        "300 minutos ou mais", "9"),
+                          ordered=T)

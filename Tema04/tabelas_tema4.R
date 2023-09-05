@@ -145,3 +145,48 @@ saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
 
 
 
+## TABELA 4.5.x ##
+
+table(pense$ATIVIDADE) #alunos que têm 2 aulas ou mais de educação física
+
+tabela_451 <- modelo1(DESENHO=subset(desenho_validos, pense$ATIVIDADE!=-2),
+                      VAR_COL="ATIVIDADE",
+                      NOME_VAR_COL="Tempo de atividade física por semana",
+                      VETOR_COL=c("Inativo", "1 a 149 minutos", "150 a 299 minutos",
+                                  "300 minutos ou mais"),
+                      FILTRO=2:5,
+                      fun_estima="estima_pct",
+                      fun_arruma="tab_3vars")
+
+tabela_452 <- modelo2(DESENHO=subset(desenho_validos, pense$ATIVIDADE!=-2),
+                      VAR_COL="ATIVIDADE",
+                      NOME_VAR_COL="Tempo de atividade física por semana",
+                      VETOR_COL=c("Inativo", "1 a 149 minutos", "150 a 299 minutos",
+                                  "300 minutos ou mais"),
+                      FILTRO=2:5,
+                      fun_estima="estima_pct",
+                      fun_arruma="tab_2vars")
+
+tabela_453 <- modelo3(DESENHO=subset(desenho_validos, pense$ATIVIDADE!=-2),
+                      VAR_COL="ATIVIDADE",
+                      NOME_VAR_COL="Tempo de atividade física por semana",
+                      VETOR_COL=c("Inativo", "1 a 149 minutos", "150 a 299 minutos",
+                                  "300 minutos ou mais"),
+                      FILTRO=2:5,
+                      fun_estima="estima_pct",
+                      fun_arruma="tab_2vars")
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.5.1")
+writeData(wb,"4.5.1",tabela_451)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.5.2")
+writeData(wb,"4.5.2",tabela_452)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.5.3")
+writeData(wb,"4.5.3",tabela_453)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
