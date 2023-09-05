@@ -1207,7 +1207,7 @@ saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
 
 
 ## TABELA 3.28.x ##
-#não bateu!!
+
 table(pense$CANTINA2) #freq com que os alunos compram comida na cantina
 
 tabela_3281_pt1 <- modelo1(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono"
@@ -1222,7 +1222,9 @@ tabela_3281_pt1 <- modelo1(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Aba
                            VAR_EXTRA="Dependência Administrativa",
                            VALOR_EXTRA="Pública")
 
-tabela_3281_pt2 <- modelo1(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==2)),
+tabela_3281_pt2 <- modelo1(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono"
+                                                            & pense$CANTINA2!="Não tem cantina"
+                                                            & pense$DEP_ADMIN==2)),
                            VAR_COL="CANTINA2",
                            NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
                            VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
@@ -1234,7 +1236,9 @@ tabela_3281_pt2 <- modelo1(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Aba
 
 tabela_3281 <- rbind(tabela_3281_pt1, tabela_3281_pt2)
 
-tabela_3282_pt1 <- modelo2(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==1)),
+tabela_3282_pt1 <- modelo2(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono"
+                                                            & pense$CANTINA2!="Não tem cantina"
+                                                            & pense$DEP_ADMIN==1)),
                            VAR_COL="CANTINA2",
                            NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
                            VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
@@ -1244,7 +1248,9 @@ tabela_3282_pt1 <- modelo2(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Aba
                            NOM_VAR_LIN="Dependência Administrativa",
                            VETOR_LIN="Pública")
 
-tabela_3282_pt2 <- modelo2(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==2)),
+tabela_3282_pt2 <- modelo2(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono"
+                                                            & pense$CANTINA2!="Não tem cantina"
+                                                            & pense$DEP_ADMIN==2)),
                            VAR_COL="CANTINA2",
                            NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
                            VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
@@ -1256,7 +1262,9 @@ tabela_3282_pt2 <- modelo2(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Aba
 
 tabela_3282 <- rbind(tabela_3282_pt1, tabela_3282_pt2)
 
-tabela_3283_pt1 <- modelo3(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==1)),
+tabela_3283_pt1 <- modelo3(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono"
+                                                            & pense$CANTINA2!="Não tem cantina"
+                                                            & pense$DEP_ADMIN==1)),
                            VAR_COL="CANTINA2",
                            NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
                            VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
@@ -1266,7 +1274,9 @@ tabela_3283_pt1 <- modelo3(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Aba
                            NOM_VAR_LIN="Dependência Administrativa",
                            VETOR_LIN="Pública")
 
-tabela_3283_pt2 <- modelo3(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono" & pense$DEP_ADMIN==2)),
+tabela_3283_pt2 <- modelo3(DESENHO=subset(desenho_validos, (pense$CANTINA2!="Abandono"
+                                                            & pense$CANTINA2!="Não tem cantina"
+                                                            & pense$DEP_ADMIN==2)),
                            VAR_COL="CANTINA2",
                            NOME_VAR_COL="Frequência com que os alunos compram comida na cantina",
                            VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
@@ -1292,3 +1302,139 @@ wb <- loadWorkbook("Tema03/Tema03.xlsx")
 addWorksheet(wb,"3.28.3")
 writeData(wb,"3.28.3",tabela_3283)
 saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 3.29.x ##
+
+table(pense$PONTO_ALT) #compra comida em ponto alternativo
+
+startTime <- Sys.time()
+tabelas_329x <- modelo5(var=pense$PONTO_ALT,
+                        var_string="PONTO_ALT",
+                        var_titulo="Você compra comida em um ponto alternativo de venda?",
+                        valor="Sim",
+                        filtragem=2)
+endTime <- Sys.time()
+
+tabela3291 <- tabelas_329x$tabela1
+tabela3292 <- tabelas_329x$tabela2
+tabela3293 <- tabelas_329x$tabela3
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.29.1")
+writeData(wb,"3.29.1",tabela3291)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.29.2")
+writeData(wb,"3.29.2",tabela3292)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.29.3")
+writeData(wb,"3.29.3",tabela3293)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+
+
+## TABELA 3.30.x ##
+
+table(pense$PONTO_ALT2) #freq com que os alunos compram comida no ponto alternativo
+
+tabela_3301_pt1 <- modelo1(DESENHO=subset(desenho_validos, (pense$PONTO_ALT2!="Abandono"
+                                                            & pense$PONTO_ALT2!="Não tem ponto alternativo"
+                                                            & pense$DEP_ADMIN==1)),
+                           VAR_COL="PONTO_ALT2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida no ponto alternativo de venda",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_4vars",
+                           VAR_EXTRA="Dependência Administrativa",
+                           VALOR_EXTRA="Pública")
+
+tabela_3301_pt2 <- modelo1(DESENHO=subset(desenho_validos, (pense$PONTO_ALT2!="Abandono"
+                                                            & pense$PONTO_ALT2!="Não tem ponto alternativo"
+                                                            & pense$DEP_ADMIN==2)),
+                           VAR_COL="PONTO_ALT2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida no ponto alternativo de venda",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_4vars",
+                           VAR_EXTRA="Dependência Administrativa",
+                           VALOR_EXTRA="Privada")
+
+tabela_3301 <- rbind(tabela_3301_pt1, tabela_3301_pt2)
+
+tabela_3302_pt1 <- modelo2(DESENHO=subset(desenho_validos, (pense$PONTO_ALT2!="Abandono"
+                                                            & pense$PONTO_ALT2!="Não tem ponto alternativo"
+                                                            & pense$DEP_ADMIN==1)),
+                           VAR_COL="PONTO_ALT2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida no ponto alternativo de venda",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Pública")
+
+tabela_3302_pt2 <- modelo2(DESENHO=subset(desenho_validos, (pense$PONTO_ALT2!="Abandono"
+                                                            & pense$PONTO_ALT2!="Não tem ponto alternativo"
+                                                            & pense$DEP_ADMIN==2)),
+                           VAR_COL="PONTO_ALT2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida no ponto alternativo de venda",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Privada")
+
+tabela_3302 <- rbind(tabela_3302_pt1, tabela_3302_pt2)
+
+tabela_3303_pt1 <- modelo3(DESENHO=subset(desenho_validos, (pense$PONTO_ALT2!="Abandono"
+                                                            & pense$PONTO_ALT2!="Não tem ponto alternativo"
+                                                            & pense$DEP_ADMIN==1)),
+                           VAR_COL="PONTO_ALT2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida no ponto alternativo de venda",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Pública")
+
+tabela_3303_pt2 <- modelo3(DESENHO=subset(desenho_validos, (pense$PONTO_ALT2!="Abandono"
+                                                            & pense$PONTO_ALT2!="Não tem ponto alternativo"
+                                                            & pense$DEP_ADMIN==2)),
+                           VAR_COL="PONTO_ALT2",
+                           NOME_VAR_COL="Frequência com que os alunos compram comida no ponto alternativo de venda",
+                           VETOR_COL=c("Não ou raramente", "1 ou 2 dias", "3 dias ou mais"),
+                           FILTRO=2:4,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Privada")
+
+tabela_3303 <- rbind(tabela_3303_pt1, tabela_3303_pt2)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.30.1")
+writeData(wb,"3.30.1",tabela_3301)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.30.2")
+writeData(wb,"3.30.2",tabela_3302)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema03/Tema03.xlsx")
+addWorksheet(wb,"3.30.3")
+writeData(wb,"3.30.3",tabela_3303)
+saveWorkbook(wb,"Tema03/Tema03.xlsx",overwrite = TRUE)
+
+
+

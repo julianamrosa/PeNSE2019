@@ -881,6 +881,107 @@ pense$CANTINA2 <- factor(cantina2, c("Abandono", "Não ou raramente", "1 ou 2 di
                                      "3 dias ou mais", "Não tem cantina",  "Sem resposta"),
                          ordered=T)
 
+# Ajuste para a tabela 3.29.1
+
+ponto_alt <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02042[i])){
+    ponto_alt[i] <- NA
+  }
+  else if (pense$B02042[i]==-2){
+    ponto_alt[i] <- "Abandono"
+  }
+  else if (pense$B02042[i]==9){
+    ponto_alt[i] <- "Sem resposta"
+  }
+  else if (pense$B02042[i]==5 | pense$B02042[i]==6){
+    ponto_alt[i] <- "Não"
+  }
+  else{
+    ponto_alt[i] <- "Sim"
+  }
+}
+
+pense$PONTO_ALT <- factor(ponto_alt, c("Abandono", "Sim", "Não",  "Sem resposta"),
+                        ordered=T)
+
+# Ajuste para a tabela 3.30.1
+
+ponto_alt2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B02042[i])){
+    ponto_alt2[i] <- NA
+  }
+  else if (pense$B02042[i]==-2){
+    ponto_alt2[i] <- "Abandono"
+  }
+  else if (pense$B02042[i]==9){
+    ponto_alt2[i] <- "Sem resposta"
+  }
+  else if (pense$B02042[i]==6){
+    ponto_alt2[i] <- "Não tem ponto alternativo"
+  }
+  else if (pense$B02042[i]==4 | pense$B02042[i]==5){
+    ponto_alt2[i] <- "Não ou raramente"
+  }
+  else if (pense$B02042[i]==1 | pense$B02042[i]==2){
+    ponto_alt2[i] <- "3 dias ou mais"
+  }
+  else{
+    ponto_alt2[i] <- "1 ou 2 dias"
+  }
+}
+
+pense$PONTO_ALT2 <- factor(ponto_alt2, c("Abandono", "Não ou raramente", "1 ou 2 dias",
+                                     "3 dias ou mais", "Não tem ponto alternativo",  "Sem resposta"),
+                         ordered=T)
+
+# Ajuste para a tabela 4.1.1
+
+ed_fisica <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B03003A[i])){
+    ed_fisica[i] <- NA
+  }
+  else if (pense$B03003A[i]==-2 | pense$B03003A[i]==9){
+    ed_fisica[i] <- pense$B03003A[i]
+  }
+  else if (pense$B03003A[i]==7 | pense$B03003A[i]==8){
+    ed_fisica[i] <- 5
+  }
+  else{
+    ed_fisica[i] <- pense$B03003A[i]-1
+  }
+}
+
+pense$ED_FISICA <- factor(ed_fisica, c(-2, 0:5, 9),
+                           ordered=T)
+
+# Ajuste para a tabela 4.4.1
+
+ed_fisica2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B03003A[i])){
+    ed_fisica2[i] <- NA
+  }
+  else if (pense$B03003A[i]==-2 | pense$B03003A[i]==9){
+    ed_fisica2[i] <- pense$B03003A[i]
+  }
+  else if (pense$B03003A[i] %in% 3:8){
+    ed_fisica2[i] <- 2
+  }
+  else{
+    ed_fisica2[i] <- pense$B03003A[i]-1
+  }
+}
+
+pense$ED_FISICA2 <- factor(ed_fisica2, c(-2, 0:2, 9),
+                          ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
