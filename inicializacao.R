@@ -982,6 +982,46 @@ for (i in 1:nrow(pense)){
 pense$ED_FISICA2 <- factor(ed_fisica2, c(-2, 0:2, 9),
                           ordered=T)
 
+# Ajuste para a tabela 4.8.1
+
+televisao <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B03009B[i])){
+    televisao[i] <- NA
+  }
+  else if (pense$B03009B[i]==-2 | pense$B03009B[i]==99
+           | pense$B03009B[i] %in% 1:3){
+    televisao[i] <- pense$B03009B[i]
+  }
+  else{
+    televisao[i] <- 4
+  }
+}
+
+pense$TELEVISAO <- factor(televisao, c(-2, 1:4, 99),
+                           ordered=T)
+
+# Ajuste para a tabela 4.9.1
+
+sentado <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B03010B[i])){
+    sentado[i] <- NA
+  }
+  else if (pense$B03010B[i]==-2 | pense$B03010B[i]==99
+           | pense$B03010B[i] %in% 1:3){
+    sentado[i] <- pense$B03010B[i]
+  }
+  else{
+    sentado[i] <- 4
+  }
+}
+
+pense$SENTADO <- factor(sentado, c(-2, 1:4, 99),
+                          ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,

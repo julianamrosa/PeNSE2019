@@ -44,7 +44,7 @@ for (i in 1:nrow(pense)){
     }
     else if (pense$B03002A1[i]==7){
       inferior <- 60
-      superior <- 0
+      superior <- 69 #infinito
     }
     inferior <- inferior*(pense$B03001A1[i]-1)
     superior <- superior*(pense$B03001A1[i]-1)
@@ -101,7 +101,7 @@ for (i in 1:nrow(pense)){
     }
     else if (pense$B03002A2[i]==7){
       inferior <- 60
-      superior <- 0
+      superior <- 69 #infinito
     }
     inferior <- inferior*(pense$B03001A2[i]-1)
     superior <- superior*(pense$B03001A2[i]-1)
@@ -170,7 +170,7 @@ for (i in 1:nrow(pense)){
     }
     else if (pense$B03005B[i]==9){
       inferior <- 80
-      superior <- 0
+      superior <- 89 #infinito
     }
     inferior <- inferior*(pense$B03003A[i]-1)
     superior <- superior*(pense$B03003A[i]-1)
@@ -232,18 +232,13 @@ for (i in 1:nrow(pense)){
     }
     else if (pense$B03007A[i]==8){
       inferior <- 80
-      superior <- 0
+      superior <- 89 #infinito
     }
     inferior <- inferior*(pense$B03006B[i]-1)
     superior <- superior*(pense$B03006B[i]-1)
     outras_ativ[i] <- paste(inferior, "a", superior, "minutos")
   }
 }
-
-table(ida)
-table(volta)
-table(ed_fis)
-table(outras_ativ)
 
 atividade <- c()
 
@@ -276,6 +271,48 @@ for (i in 1:nrow(pense)){
   }
 }
 
+#for (i in 1:nrow(pense)){
+#  if (is.na(atividade[i])){
+#    atividade2[i] <- NA
+#  }
+#  else if (atividade[i]=="-2"){
+#    atividade2[i] <- "-2"
+#  }
+#  else if (atividade[i]=="9"){
+#    atividade2[i] <- "9"
+#  }
+#  else{
+#    inferior <- as.numeric(strsplit(atividade[i], " ", fixed=T)[[1]][1])
+#    superior <- as.numeric(strsplit(atividade[i], " ", fixed=T)[[1]][3])
+#    pm <- (inferior+superior)/2
+#    if (superior>=2000){
+#      if (inferior>=1 & inferior<=149){
+#        atividade2[i] <- "1 a 149 minutos"
+#      }
+#      else if (inferior>=150 & inferior <=299){
+#        atividade2[i] <- "150 a 299 minutos"
+#      }
+#      else if (inferior>=300){
+#        atividade2[i] <- "300 minutos ou mais"
+#      }
+#    }
+#    else{
+#      if (pm==0){
+#        atividade2[i] <- "Inativo"
+#      }
+#      else if (pm>=1 & pm<=149){
+#        atividade2[i] <- "1 a 149 minutos"
+#      }
+#      else if (pm>=150 & pm<=299){
+#        atividade2[i] <- "150 a 299 minutos"
+#      }
+#      else if (pm>=300){
+#        atividade2[i] <- "300 minutos ou mais"
+#      }
+#    }
+#  }
+#}
+
 atividade2 <- c()
 
 for (i in 1:nrow(pense)){
@@ -291,36 +328,21 @@ for (i in 1:nrow(pense)){
   else{
     inferior <- as.numeric(strsplit(atividade[i], " ", fixed=T)[[1]][1])
     superior <- as.numeric(strsplit(atividade[i], " ", fixed=T)[[1]][3])
-    if (inferior==0 & superior==0){
+    pm <- (inferior+superior)/2
+    if (pm==0){
       atividade2[i] <- "Inativo"
     }
-    else if (inferior>=300){
+    else if (pm>=1 & pm<=149){
+      atividade2[i] <- "1 a 149 minutos"
+    }
+    else if (pm>=150 & pm<=299){
+      atividade2[i] <- "150 a 299 minutos"
+    }
+    else if (pm>=300){
       atividade2[i] <- "300 minutos ou mais"
-    }
-    else if (superior==0){
-      if (inferior %in% 1:149){
-        atividade2[i] <- "1 a 149 minutos"
-      }
-      else if (inferior %in% 150:299){
-        atividade2[i] <- "150 a 299 minutos"
-      }
-    }
-    else{
-      pm <- (inferior+superior)/2
-      if (pm %in% 1:149){
-        atividade2[i] <- "1 a 149 minutos"
-      }
-      else if (pm %in% 150:299){
-        atividade2[i] <- "150 a 299 minutos"
-      }
-      else{
-        atividade2[i] <- "300 minutos ou mais"
-      }
     }
   }
 }
-
-table(atividade2)
 
 pense$ATIVIDADE <- factor(atividade2, c("-2", "Inativo", "1 a 149 minutos", "150 a 299 minutos",
                                         "300 minutos ou mais", "9"),

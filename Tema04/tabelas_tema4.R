@@ -146,8 +146,10 @@ saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
 
 
 ## TABELA 4.5.x ##
-
-table(pense$ATIVIDADE) #alunos que têm 2 aulas ou mais de educação física
+#Esses valores serão aproximaçÕes
+#Como não temos o método exato de cálculo, as estimativas não batem exatamente
+#Podem haver diferenças de até 5 pp
+table(pense$ATIVIDADE) #tempo de atividade física
 
 tabela_451 <- modelo1(DESENHO=subset(desenho_validos, pense$ATIVIDADE!=-2),
                       VAR_COL="ATIVIDADE",
@@ -189,4 +191,136 @@ saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
 wb <- loadWorkbook("Tema04/Tema04.xlsx")
 addWorksheet(wb,"4.5.3")
 writeData(wb,"4.5.3",tabela_453)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 4.6.x ##
+
+table(pense$ATIVIDADE) #tempo de atividade física (>=300 minutos)
+
+startTime <- Sys.time()
+tabelas_46x <- modelo5(var=pense$ATIVIDADE,
+                       var_string="ATIVIDADE",
+                       var_titulo="Tempo de atividade física por semana",
+                       valor="300 minutos ou mais",
+                       filtragem=5)
+endTime <- Sys.time()
+
+tabela_461 <- tabelas_46x$tabela1
+tabela_462 <- tabelas_46x$tabela2
+tabela_463 <- tabelas_46x$tabela3
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.6.1")
+writeData(wb,"4.6.1",tabela_461)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.6.2")
+writeData(wb,"4.6.2",tabela_462)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.6.3")
+writeData(wb,"4.6.3",tabela_463)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 4.7.x ##
+
+table(pense$ATIVIDADE) #tempo de atividade física (Inativo)
+
+startTime <- Sys.time()
+tabelas_47x <- modelo5(var=pense$ATIVIDADE,
+                       var_string="ATIVIDADE",
+                       var_titulo="Tempo de atividade física por semana",
+                       valor="Inativo",
+                       filtragem=2)
+endTime <- Sys.time()
+
+tabela_471 <- tabelas_47x$tabela1
+tabela_472 <- tabelas_47x$tabela2
+tabela_473 <- tabelas_47x$tabela3
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.7.1")
+writeData(wb,"4.7.1",tabela_471)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.7.2")
+writeData(wb,"4.7.2",tabela_472)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.7.3")
+writeData(wb,"4.7.3",tabela_473)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 4.8.x ##
+
+table(pense$TELEVISAO) #tempo diário em frente à tv
+
+startTime <- Sys.time()
+tabelas_48x <- modelo5(var=pense$TELEVISAO,
+                       var_string="TELEVISAO",
+                       var_titulo="Tempo diário em frente à tv",
+                       valor="Mais de 2 horas",
+                       filtragem=5)
+endTime <- Sys.time()
+
+tabela_481 <- tabelas_48x$tabela1
+tabela_482 <- tabelas_48x$tabela2
+tabela_483 <- tabelas_48x$tabela3
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.8.1")
+writeData(wb,"4.8.1",tabela_481)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.8.2")
+writeData(wb,"4.8.2",tabela_482)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.8.3")
+writeData(wb,"4.8.3",tabela_483)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 4.8.x ##
+
+table(pense$SENTADO) #tempo diário sentado
+
+startTime <- Sys.time()
+tabelas_49x <- modelo5(var=pense$SENTADO,
+                       var_string="SENTADO",
+                       var_titulo="Tempo diário sentado (fora da escola)",
+                       valor="Mais de 3 horas",
+                       filtragem=5)
+endTime <- Sys.time()
+
+tabela_491 <- tabelas_49x$tabela1
+tabela_492 <- tabelas_49x$tabela2
+tabela_493 <- tabelas_49x$tabela3
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.9.1")
+writeData(wb,"4.9.1",tabela_491)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.9.2")
+writeData(wb,"4.9.2",tabela_492)
+saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema04/Tema04.xlsx")
+addWorksheet(wb,"4.9.3")
+writeData(wb,"4.9.3",tabela_493)
 saveWorkbook(wb,"Tema04/Tema04.xlsx",overwrite = TRUE)
