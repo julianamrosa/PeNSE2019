@@ -1022,6 +1022,83 @@ for (i in 1:nrow(pense)){
 pense$SENTADO <- factor(sentado, c(-2, 1:4, 99),
                           ordered=T)
 
+# Ajuste para a tabela 5.2.1
+
+cigarro <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B04002A[i])){
+    cigarro[i] <- NA
+  }
+  else if (pense$B04002A[i] %in% 9:13){
+    cigarro[i] <- 13
+  }
+  else{
+    cigarro[i] <- pense$B04002A[i]
+  }
+}
+
+pense$CIGARRO <- factor(cigarro, c(-2, -1, 13:18, 99),
+                        ordered=T)
+
+
+# Ajuste para a tabela 5.3.1
+
+fumou_30dias <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B04003[i])){
+    fumou_30dias[i] <- NA
+  }
+  else if (pense$B04003[i] %in% 2:7){
+    fumou_30dias[i] <- 2
+  }
+  else{
+    fumou_30dias[i] <- pense$B04003[i]
+  }
+}
+
+pense$FUMOU_30DIAS <- factor(fumou_30dias, c(-2, -1, 1:2, 9),
+                        ordered=T)
+
+# Ajuste para a tabela 5.11.1
+
+responsavel_fuma <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B04006B[i])){
+    responsavel_fuma[i] <- NA
+  }
+  else if (pense$B04006B[i] %in% 2:4){
+    responsavel_fuma[i] <- 2
+  }
+  else{
+    responsavel_fuma[i] <- pense$B04006B[i]
+  }
+}
+
+pense$RESPONSAVEL_FUMA <- factor(responsavel_fuma, c(-2, -1, 1:2, 5, 9),
+                             ordered=T)
+
+# Ajuste para a tabela 5.12.1
+
+fumaram_casa <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B04005A[i])){
+    fumaram_casa[i] <- NA
+  }
+  else if (pense$B04005A[i] %in% 2:5){
+    fumaram_casa[i] <- 2
+  }
+  else{
+    fumaram_casa[i] <- pense$B04005A[i]
+  }
+}
+
+pense$FUMARAM_CASA <- factor(fumaram_casa, c(-2, -1, 1:2, 9),
+                                 ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
