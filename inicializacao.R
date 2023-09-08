@@ -1099,6 +1099,102 @@ for (i in 1:nrow(pense)){
 pense$FUMARAM_CASA <- factor(fumaram_casa, c(-2, -1, 1:2, 9),
                                  ordered=T)
 
+# Ajuste para a tabela 6.2.1
+
+alcool_idade <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B05003A[i])){
+    alcool_idade[i] <- NA
+  }
+  else if (pense$B05003A[i] %in% 9:13){
+    alcool_idade[i] <- 13
+  }
+  else{
+    alcool_idade[i] <- pense$B05003A[i]
+  }
+}
+
+pense$ALCOOL_IDADE <- factor(alcool_idade, c(-2, -1, 13:18, 99),
+                        ordered=T)
+
+# Ajuste para a tabela 6.3.1
+
+bebado <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B05007[i])){
+    bebado[i] <- NA
+  }
+  else if (pense$B05007[i] %in% 2:5){
+    bebado[i] <- 2
+  }
+  else{
+    bebado[i] <- pense$B05007[i]
+  }
+}
+
+pense$BEBADO <- factor(bebado, c(-2, -1, 1:2, 9),
+                             ordered=T)
+
+# Ajuste para a tabela 6.4.1
+
+problemas_alcool <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B05009[i])){
+    problemas_alcool[i] <- NA
+  }
+  else if (pense$B05009[i] %in% 2:5){
+    problemas_alcool[i] <- 2
+  }
+  else{
+    problemas_alcool[i] <- pense$B05009[i]
+  }
+}
+
+pense$PROBLEMAS_ALCOOL <- factor(problemas_alcool, c(-2, -1, 1:2, 9),
+                       ordered=T)
+
+# Ajuste para a tabela 6.5.1
+
+bebeu_30dias <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B05004A[i])){
+    bebeu_30dias[i] <- NA
+  }
+  else if (pense$B05004A[i] %in% 2:7){
+    bebeu_30dias[i] <- 2
+  }
+  else{
+    bebeu_30dias[i] <- pense$B05004A[i]
+  }
+}
+
+pense$BEBEU_30DIAS <- factor(bebeu_30dias, c(-2, -1, 1:2, 9),
+                                 ordered=T)
+
+# Ajuste para a tabela 6.7.1
+
+doses <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B05005A[i])){
+    doses[i] <- NA
+  }
+  else if (pense$B05005A[i] %in% 4:5){
+    doses[i] <- 4
+  }
+  else{
+    doses[i] <- pense$B05005A[i]
+  }
+}
+
+pense$DOSES <- factor(doses, c(-2, -1, 1:4, 9),
+                             ordered=T)
+
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
