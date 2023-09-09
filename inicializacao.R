@@ -1175,6 +1175,7 @@ for (i in 1:nrow(pense)){
 pense$BEBEU_30DIAS <- factor(bebeu_30dias, c(-2, -1, 1:2, 9),
                                  ordered=T)
 
+
 # Ajuste para a tabela 6.7.1
 
 doses <- c()
@@ -1192,8 +1193,102 @@ for (i in 1:nrow(pense)){
 }
 
 pense$DOSES <- factor(doses, c(-2, -1, 1:4, 9),
+                      ordered=T)
+
+# Ajuste para a tabela 6.12.1
+
+responsavel_bebe <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B05011[i])){
+    responsavel_bebe[i] <- NA
+  }
+  else if (pense$B05011[i] %in% 2:4){
+    responsavel_bebe[i] <- 2
+  }
+  else{
+    responsavel_bebe[i] <- pense$B05011[i]
+  }
+}
+
+pense$RESPONSAVEL_BEBE <- factor(responsavel_bebe, c(-2, -1, 1:2, 5, 9),
+                                 ordered=T)
+
+# Ajuste para a tabela 7.2.1
+
+drogas_idade <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B06002A[i])){
+    drogas_idade[i] <- NA
+  }
+  else if (pense$B06002A[i] %in% 9:13){
+    drogas_idade[i] <- 9
+  }
+  else{
+    drogas_idade[i] <- pense$B06002A[i]
+  }
+}
+
+pense$DROGAS_IDADE <- factor(drogas_idade, c(-2, -1, 9, 14:18, 99),
+                                 ordered=T)
+
+# Ajuste para a tabela 7.3.1
+
+drogas_30dias <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B06003B[i])){
+    drogas_30dias[i] <- NA
+  }
+  else if (pense$B06003B[i] %in% 2:5){
+    drogas_30dias[i] <- 2
+  }
+  else{
+    drogas_30dias[i] <- pense$B06003B[i]
+  }
+}
+
+pense$DROGAS_30DIAS <- factor(drogas_30dias, c(-2, -1, 1:2, 9),
                              ordered=T)
 
+# Ajuste para a tabela 7.4.1
+
+maconha <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B06004A[i])){
+    maconha[i] <- NA
+  }
+  else if (pense$B06004A[i] %in% 2:5){
+    maconha[i] <- 2
+  }
+  else{
+    maconha[i] <- pense$B06004A[i]
+  }
+}
+
+pense$MACONHA <- factor(maconha, c(-2, -1, 1:2, 9),
+                              ordered=T)
+
+# Ajuste para a tabela 7.5.1
+
+crack <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B06005A[i])){
+    crack[i] <- NA
+  }
+  else if (pense$B06005A[i] %in% 2:5){
+    crack[i] <- 2
+  }
+  else{
+    crack[i] <- pense$B06005A[i]
+  }
+}
+
+pense$CRACK <- factor(crack, c(-2, -1, 1:2, 9),
+                        ordered=T)
 
 # Objeto inicial
 desenho_pre <- svydesign(

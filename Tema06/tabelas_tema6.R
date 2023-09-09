@@ -155,7 +155,7 @@ saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
 
 ## TABELA 6.6.x ##
 
-table(pense$B05005A) #modo de obtenção do cigarro
+table(pense$B05005A) #copos/doses de bebida alcoolica por dia
 
 tabela_661 <- modelo1(DESENHO=subset(desenho_validos, (pense$B05005A=-2
                                                        & pense$B05005A!=-1)),
@@ -204,7 +204,7 @@ saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
 
 ## TABELA 6.7.x ##
 
-table(pense$DOSES) #copos/doses de bebida por dia (>=4)
+table(pense$DOSES) #copos/doses de bebida por dia (>=4), dentre os que beberam
 
 tabelas_67x <- modelo5(var=pense$DOSES,
                        var_string="DOSES",
@@ -235,7 +235,7 @@ saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
 
 ## TABELA 6.8.x ##
 
-table(pense$B05005A) #copos/doses de bebida por dia (>=5)
+table(pense$B05005A) #copos/doses de bebida por dia (>=5), dentre os que beberam
 
 tabelas_68x <- modelo5(var=pense$B05005A,
                        var_string="B05005A",
@@ -322,6 +322,130 @@ saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
 wb <- loadWorkbook("Tema06/Tema06.xlsx")
 addWorksheet(wb,"6.10.3")
 writeData(wb,"6.10.3",tabela_6103)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 6.11.x ##
+
+table(pense$B05006B) #modo de obtenção da bebida alcoólica
+
+tabela_6111 <- modelo1(DESENHO=subset(desenho_validos, (pense$B05006B=-2
+                                                       & pense$B05006B!=-1)),
+                      VAR_COL="B05006B",
+                      NOME_VAR_COL="Modo de obtenção da bebida alcoólica",
+                      VETOR_COL=c("Loja/mercado/bar", "Vendedor de rua",
+                                  "Deu dinheiro para alguém comprar",
+                                  "Conseguiu com amigos", "Pegou escondido em casa",
+                                  "Conseguiu com alguém da família",
+                                  "Em uma festa", "Outro"),
+                      FILTRO=3:10,
+                      fun_estima="estima_pct",
+                      fun_arruma="tab_3vars")
+
+tabela_6112 <- modelo2(DESENHO=subset(desenho_validos, (pense$B05006B!=-2
+                                                       & pense$B05006B!=-1)),
+                      VAR_COL="B05006B",
+                      NOME_VAR_COL="Modo de obtenção da bebida alcoólica",
+                      VETOR_COL=c("Loja/mercado/bar", "Vendedor de rua",
+                                  "Deu dinheiro para alguém comprar",
+                                  "Conseguiu com amigos", "Pegou escondido em casa",
+                                  "Conseguiu com alguém da família",
+                                  "Em uma festa", "Outro"),
+                      FILTRO=3:10,
+                      fun_estima="estima_pct",
+                      fun_arruma="tab_2vars")
+
+tabela_6113 <- modelo3(DESENHO=subset(desenho_validos,
+                                     (pense$B05006B!=-2
+                                      & pense$B05006B!=-1)),
+                      VAR_COL="B05006B",
+                      NOME_VAR_COL="Modo de obtenção da bebida alcoólica",
+                      VETOR_COL=c("Loja/mercado/bar", "Vendedor de rua",
+                                  "Deu dinheiro para alguém comprar",
+                                  "Conseguiu com amigos", "Pegou escondido em casa",
+                                  "Conseguiu com alguém da família",
+                                  "Em uma festa", "Outro"),
+                      FILTRO=3:10,
+                      fun_estima="estima_pct",
+                      fun_arruma="tab_2vars")
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.11.1")
+writeData(wb,"6.11.1",tabela_6111)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.11.2")
+writeData(wb,"6.11.2",tabela_6112)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.11.3")
+writeData(wb,"6.11.3",tabela_6113)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+
+
+
+## TABELA 6.12.x ##
+
+table(pense$RESPONSAVEL_BEBE) #pais/ responsáveis bebem
+
+tabelas_612x <- modelo5(var=pense$RESPONSAVEL_BEBE,
+                        var_string="RESPONSAVEL_BEBE",
+                        var_titulo="Pais/ responsáveis consomem bebidas alcoólicas",
+                        valor="Sim",
+                        filtragem=4)
+
+tabela_6121 <- tabelas_612x$tabela1
+tabela_6122 <- tabelas_612x$tabela2
+tabela_6123 <- tabelas_612x$tabela3
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.12.1")
+writeData(wb,"6.12.1",tabela_6121)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.12.2")
+writeData(wb,"6.12.2",tabela_6122)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.12.3")
+writeData(wb,"6.12.3",tabela_6123)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+
+
+## TABELA 6.13.x ##
+
+table(pense$B05010A) #amigos beberam na sua frente
+
+tabelas_613x <- modelo5(var=pense$B05010A,
+                        var_string="B05010A",
+                        var_titulo="Amigos consumiram bebidas alcoólicas na sua presença",
+                        valor="Sim",
+                        filtragem=3)
+
+tabela_6131 <- tabelas_613x$tabela1
+tabela_6132 <- tabelas_613x$tabela2
+tabela_6133 <- tabelas_613x$tabela3
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.13.1")
+writeData(wb,"6.13.1",tabela_6131)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.13.2")
+writeData(wb,"6.13.2",tabela_6132)
+saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
+
+wb <- loadWorkbook("Tema06/Tema06.xlsx")
+addWorksheet(wb,"6.13.3")
+writeData(wb,"6.13.3",tabela_6133)
 saveWorkbook(wb,"Tema06/Tema06.xlsx",overwrite = TRUE)
 
 
