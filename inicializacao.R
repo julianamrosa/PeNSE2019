@@ -1290,6 +1290,26 @@ for (i in 1:nrow(pense)){
 pense$CRACK <- factor(crack, c(-2, -1, 1:2, 9),
                         ordered=T)
 
+# Ajuste para a tabela 8.2.1
+
+idade_relacao_sex <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B08002[i])){
+    idade_relacao_sex[i] <- NA
+  }
+  else if (pense$B08002[i] %in% 9:13){
+    idade_relacao_sex[i] <- 13
+  }
+  else{
+    idade_relacao_sex[i] <- pense$B08002[i]
+  }
+}
+
+pense$IDADE_RELACAO_SEX <- factor(idade_relacao_sex, c(-2, -1, 13:18, 99),
+                      ordered=T)
+
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
