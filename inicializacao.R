@@ -1309,6 +1309,25 @@ for (i in 1:nrow(pense)){
 pense$IDADE_RELACAO_SEX <- factor(idade_relacao_sex, c(-2, -1, 13:18, 99),
                       ordered=T)
 
+# Ajuste para a tabela 8.6.1
+
+contraceptivo <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B08012A[i])){
+    contraceptivo[i] <- NA
+  }
+  else if (pense$B08012A[i] %in% c(3:5, 7:9)){
+    contraceptivo[i] <- 7
+  }
+  else{
+    contraceptivo[i] <- pense$B08012A[i]
+  }
+}
+
+pense$CONTRACEPTIVO <- factor(contraceptivo, c(-2, -1, 1:2, 6, 7, 10, 99),
+                                  ordered=T)
+
 
 # Objeto inicial
 desenho_pre <- svydesign(
