@@ -1600,6 +1600,140 @@ pense$AUTOAVALIACAO_NEGATIVA <- factor(autoavaliacao_negativa,
                                        c("Abandono", "Sim", "Não", "Sem resposta"),
                                        ordered=T)
 
+autoavaliacao_negativa <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$PREOCUPACAO[i])){
+    autoavaliacao_negativa[i] <- NA
+  }
+  else if (pense$TRISTE[i]==-2
+           | pense$VIDA_VALE[i]==-2){
+    autoavaliacao_negativa[i] <- "Abandono"
+  }
+  else if (pense$TRISTE[i]==9
+           | pense$VIDA_VALE[i]==9){
+    autoavaliacao_negativa[i] <- "Sem resposta"
+  }
+  else if ((pense$TRISTE[i]==4)
+           & (pense$VIDA_VALE[i]==4)){
+    autoavaliacao_negativa[i] <- "Sim"
+  }
+  else{
+    autoavaliacao_negativa[i] <- "Não"
+  }
+}
+
+pense$AUTOAVALIACAO_NEGATIVA <- factor(autoavaliacao_negativa,
+                                       c("Abandono", "Sim", "Não", "Sem resposta"),
+                                       ordered=T)
+
+# Ajuste para tabela 13.1.1
+
+estado_saude <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B13005[i])){
+    estado_saude[i] <- NA
+  }
+  else if (pense$B13005[i]==2){
+    estado_saude[i] <- 1
+  }
+  else if (pense$B13005[i]==4){
+    estado_saude[i] <- 5
+  }
+  else{
+    estado_saude[i] <- pense$B13005[i]
+  }
+}
+
+pense$ESTADO_SAUDE <- factor(estado_saude, c(-2, 1, 3, 5, 9),
+                          ordered=T)
+
+# Ajuste para tabela 13.2.1
+
+faltou_saude <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B13006[i])){
+    faltou_saude[i] <- NA
+  }
+  else if (pense$B13006[i] %in% 2:5){
+    faltou_saude[i] <- 2
+  }
+  else{
+    faltou_saude[i] <- pense$B13006[i]
+  }
+}
+
+pense$FALTOU_SAUDE <- factor(faltou_saude, c(-2, 1:2, 9),
+                             ordered=T)
+
+# Ajuste para tabela 13.4.1
+
+servico_saude <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B13002A[i])){
+    servico_saude[i] <- NA
+  }
+  else if (pense$B13002A[i] %in% 2:4){
+    servico_saude[i] <- 2
+  }
+  else if (pense$B13002A[i] %in% 5:7){
+    servico_saude[i] <- 5
+  }
+  else if (pense$B13002A[i] %in% 8:11){
+    servico_saude[i] <- 8
+  }
+  else{
+    servico_saude[i] <- pense$B13002A[i]
+  }
+}
+
+pense$SERVICO_SAUDE <- factor(servico_saude, c(-2, -1, 1, 2, 5, 8, 99),
+                             ordered=T)
+
+# Ajuste para tabela 13.5.1
+
+ubs <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B13003A[i])){
+    ubs[i] <- NA
+  }
+  else if (pense$B13003A[i] %in% 2:5){
+    ubs[i] <- 2
+  }
+  else{
+    ubs[i] <- pense$B13003A[i]
+  }
+}
+
+pense$UBS <- factor(ubs, c(-2, -1, 1:2, 9),
+                              ordered=T)
+
+# Ajuste para tabela 13.7.1
+
+motivo_ubs <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B13007A[i])){
+    motivo_ubs[i] <- NA
+  }
+  else if (pense$B13007A[i] %in% 3:4){
+    motivo_ubs[i] <- 3
+  }
+  else if (pense$B13007A[i] %in% c(2, 8:11, 13)){
+    motivo_ubs[i] <- 13
+  }
+  else{
+    motivo_ubs[i] <- pense$B13007A[i]
+  }
+}
+
+pense$MOTIVO_UBS <- factor(motivo_ubs, c(-2, -1, 1, 3, 5:7, 12:13, 99),
+                    ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
