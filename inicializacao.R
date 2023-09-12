@@ -1423,6 +1423,50 @@ for (i in 1:nrow(pense)){
 pense$DENTISTA <- factor(dentista, c(-2, 1:3, 9),
                              ordered=T)
 
+# Ajuste para tabela 11.1.1
+
+sentimento <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B11007[i])){
+    sentimento[i] <- NA
+  }
+  else if (pense$B11007[i]==2){
+    sentimento[i] <- 1
+  }
+  else if (pense$B11007[i]==5){
+    sentimento[i] <- 4
+  }
+  else{
+    sentimento[i] <- pense$B11007[i]
+  }
+}
+
+pense$SENTIMENTO <- factor(sentimento, c(-2, 1, 3, 4, 9),
+                         ordered=T)
+
+# Ajuste para tabela 11.2.1
+
+autopercepcao <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B11001[i])){
+    autopercepcao[i] <- NA
+  }
+  else if (pense$B11001[i]==2){
+    autopercepcao[i] <- 1
+  }
+  else if (pense$B11001[i]==5){
+    autopercepcao[i] <- 4
+  }
+  else{
+    autopercepcao[i] <- pense$B11001[i]
+  }
+}
+
+pense$AUTOPERCEPCAO <- factor(autopercepcao, c(-2, 1, 3, 4, 9),
+                           ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
