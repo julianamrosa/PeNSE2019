@@ -418,18 +418,92 @@ saveWorkbook(wb,"Tema08/Tema08.xlsx",overwrite = TRUE)
 
 
 ## TABELA 8.12.x ##
-#tirar sexo (manter soh dep adm)
+
 table(pense$B08013A) #já engravidou alguma vez, dentre as que já tiveram relação sexual
 
-tabelas_812x <- modelo5(var=pense$B08013A,
-                        var_string="B08013A",
-                        var_titulo="Já engravidou alguma vez, dentre as que já tiveram relação sexual",
-                        valor="Sim",
-                        filtragem=3)
+tabela_8121_pt1 <- modelo1(DESENHO=subset(desenho_validos,
+                                          (pense$B08013A!=-1
+                                           & pense$B08013A!=-2
+                                           & pense$DEP_ADMIN==1)),
+                           VAR_COL="B08013A",
+                           NOME_VAR_COL="Já engravidou alguma vez, dentre as que já tiveram relação sexual",
+                           VETOR_COL="Sim",
+                           FILTRO=3,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_4vars",
+                           VAR_EXTRA="Dependência Administrativa",
+                           VALOR_EXTRA="Pública")
 
-tabela_8121 <- tabelas_812x$tabela1
-tabela_8122 <- tabelas_812x$tabela2
-tabela_8123 <- tabelas_812x$tabela3
+tabela_8121_pt2 <- modelo1(DESENHO=subset(desenho_validos,
+                                          (pense$B08013A!=-1
+                                           & pense$B08013A!=-2
+                                           & pense$DEP_ADMIN==2)),
+                           VAR_COL="B08013A",
+                           NOME_VAR_COL="Já engravidou alguma vez, dentre as que já tiveram relação sexual",
+                           VETOR_COL="Sim",
+                           FILTRO=3,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_4vars",
+                           VAR_EXTRA="Dependência Administrativa",
+                           VALOR_EXTRA="Privada")
+
+tabela_8121 <- rbind(tabela_8121_pt1, tabela_8121_pt2)
+
+tabela_8122_pt1 <- modelo2(DESENHO=subset(desenho_validos,
+                                          (pense$B08013A!=-1
+                                           & pense$B08013A!=-2
+                                           & pense$DEP_ADMIN==1)),
+                           VAR_COL="B08013A",
+                           NOME_VAR_COL="Já engravidou alguma vez, dentre as que já tiveram relação sexual",
+                           VETOR_COL="Sim",
+                           FILTRO=3,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Pública")
+
+tabela_8122_pt2 <- modelo2(DESENHO=subset(desenho_validos,
+                                          (pense$B08013A!=-1
+                                           & pense$B08013A!=-2
+                                           & pense$DEP_ADMIN==2)),
+                           VAR_COL="B08013A",
+                           NOME_VAR_COL="Já engravidou alguma vez, dentre as que já tiveram relação sexual",
+                           VETOR_COL="Sim",
+                           FILTRO=3,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Privada")
+
+tabela_8122 <- rbind(tabela_8122_pt1, tabela_8122_pt2)
+
+tabela_8123_pt1 <- modelo3(DESENHO=subset(desenho_validos,
+                                          (pense$B08013A!=-1
+                                           & pense$B08013A!=-2
+                                           & pense$DEP_ADMIN==1)),
+                           VAR_COL="B08013A",
+                           NOME_VAR_COL="Já engravidou alguma vez, dentre as que já tiveram relação sexual",
+                           VETOR_COL="Sim",
+                           FILTRO=3,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Pública")
+
+tabela_8123_pt2 <- modelo3(DESENHO=subset(desenho_validos,
+                                          (pense$B08013A!=-1
+                                           & pense$B08013A!=-2
+                                           & pense$DEP_ADMIN==2)),
+                           VAR_COL="B08013A",
+                           NOME_VAR_COL="Já engravidou alguma vez, dentre as que já tiveram relação sexual",
+                           VETOR_COL="Sim",
+                           FILTRO=3,
+                           fun_estima="estima_pct",
+                           fun_arruma="tab_3vars",
+                           NOM_VAR_LIN="Dependência Administrativa",
+                           VETOR_LIN="Privada")
+
+tabela_8123 <- rbind(tabela_8123_pt1, tabela_8123_pt2)
 
 wb <- loadWorkbook("Tema08/Tema08.xlsx")
 addWorksheet(wb,"8.12.1")

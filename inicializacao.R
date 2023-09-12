@@ -1328,6 +1328,100 @@ for (i in 1:nrow(pense)){
 pense$CONTRACEPTIVO <- factor(contraceptivo, c(-2, -1, 1:2, 6, 7, 10, 99),
                                   ordered=T)
 
+# Ajuste para tabela 10.1.1
+
+lava_mao <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B10004A[i])){
+    lava_mao[i] <- NA
+  }
+  else if (pense$B10004A[i]==2){
+    lava_mao[i] <- 1
+  }
+  else{
+    lava_mao[i] <- pense$B10004A[i]
+  }
+}
+
+pense$LAVA_MAO <- factor(lava_mao, c(-2, 1, 3:5, 9),
+                              ordered=T)
+
+# Ajuste para tabela 10.2.1
+
+lava_mao2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B10005A[i])){
+    lava_mao2[i] <- NA
+  }
+  else if (pense$B10005A[i]==2){
+    lava_mao2[i] <- 1
+  }
+  else{
+    lava_mao2[i] <- pense$B10005A[i]
+  }
+}
+
+pense$LAVA_MAO2 <- factor(lava_mao2, c(-2, 1, 3:5, 9),
+                         ordered=T)
+
+# Ajuste para tabela 10.3.1
+
+sabonete <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B10006A[i])){
+    sabonete[i] <- NA
+  }
+  else if (pense$B10006A[i]==2){
+    sabonete[i] <- 1
+  }
+  else{
+    sabonete[i] <- pense$B10006A[i]
+  }
+}
+
+pense$SABONETE <- factor(sabonete, c(-2, 1, 3:5, 9),
+                          ordered=T)
+
+# Ajuste para tabela 10.4.1
+
+escova_dente <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B10001B[i])){
+    escova_dente[i] <- NA
+  }
+  else if (pense$B10001B[i]==5){
+    escova_dente[i] <- 4
+  }
+  else{
+    escova_dente[i] <- pense$B10001B[i]
+  }
+}
+
+pense$ESCOVA_DENTE <- factor(escova_dente, c(-2, 1:4, 9),
+                         ordered=T)
+
+# Ajuste para tabela 10.6.1
+
+dentista <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B10003[i])){
+    dentista[i] <- NA
+  }
+  else if (pense$B10003[i]==4){
+    dentista[i] <- 3
+  }
+  else{
+    dentista[i] <- pense$B10003[i]
+  }
+}
+
+pense$DENTISTA <- factor(dentista, c(-2, 1:3, 9),
+                             ordered=T)
 
 # Objeto inicial
 desenho_pre <- svydesign(
