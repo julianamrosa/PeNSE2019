@@ -1467,6 +1467,139 @@ for (i in 1:nrow(pense)){
 pense$AUTOPERCEPCAO <- factor(autopercepcao, c(-2, 1, 3, 4, 9),
                            ordered=T)
 
+# Ajuste para tabela 12.2.1
+
+preocupacao <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B12004[i])){
+    preocupacao[i] <- NA
+  }
+  else if (pense$B12004[i]==5){
+    preocupacao[i] <- 4
+  }
+  else{
+    preocupacao[i] <- pense$B12004[i]
+  }
+}
+
+pense$PREOCUPACAO <- factor(preocupacao, c(-2, 1:4, 9),
+                              ordered=T)
+
+# Ajuste para tabela 12.3.1
+
+triste <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B12005[i])){
+    triste[i] <- NA
+  }
+  else if (pense$B12005[i]==5){
+    triste[i] <- 4
+  }
+  else{
+    triste[i] <- pense$B12005[i]
+  }
+}
+
+pense$TRISTE <- factor(triste, c(-2, 1:4, 9),
+                            ordered=T)
+
+# Ajuste para tabela 12.4.1
+
+ninguem_preocupa <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B12006[i])){
+    ninguem_preocupa[i] <- NA
+  }
+  else if (pense$B12006[i]==5){
+    ninguem_preocupa[i] <- 4
+  }
+  else{
+    ninguem_preocupa[i] <- pense$B12006[i]
+  }
+}
+
+pense$NINGUEM_PREOCUPA <- factor(ninguem_preocupa, c(-2, 1:4, 9),
+                       ordered=T)
+
+# Ajuste para tabela 12.5.1
+
+irritado <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B12007[i])){
+    irritado[i] <- NA
+  }
+  else if (pense$B12007[i]==5){
+    irritado[i] <- 4
+  }
+  else{
+    irritado[i] <- pense$B12007[i]
+  }
+}
+
+pense$IRRITADO <- factor(irritado, c(-2, 1:4, 9),
+                                 ordered=T)
+
+# Ajuste para tabela 12.6.1
+
+vida_vale <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B12008[i])){
+    vida_vale[i] <- NA
+  }
+  else if (pense$B12008[i]==5){
+    vida_vale[i] <- 4
+  }
+  else{
+    vida_vale[i] <- pense$B12008[i]
+  }
+}
+
+pense$VIDA_VALE <- factor(vida_vale, c(-2, 1:4, 9),
+                         ordered=T)
+
+# Ajuste para tabela 12.7.1
+
+autoavaliacao_negativa <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$PREOCUPACAO[i])){
+    autoavaliacao_negativa[i] <- NA
+  }
+  else if (pense$PREOCUPACAO[i]==-2
+           | pense$TRISTE[i]==-2
+           | pense$NINGUEM_PREOCUPA[i]==-2
+           | pense$IRRITADO[i]==-2
+           | pense$VIDA_VALE[i]==-2){
+    autoavaliacao_negativa[i] <- "Abandono"
+  }
+  else if (pense$PREOCUPACAO[i]==9
+           | pense$TRISTE[i]==9
+           | pense$NINGUEM_PREOCUPA[i]==9
+           | pense$IRRITADO[i]==9
+           | pense$VIDA_VALE[i]==9){
+    autoavaliacao_negativa[i] <- "Sem resposta"
+  }
+  else if ((pense$PREOCUPACAO[i]==4 | pense$PREOCUPACAO[i]==3)
+           & (pense$TRISTE[i]==4 | pense$TRISTE[i]==3)
+           & (pense$NINGUEM_PREOCUPA[i]==4 | pense$NINGUEM_PREOCUPA[i]==3)
+           & (pense$IRRITADO[i]==4 | pense$IRRITADO[i]==3)
+           & (pense$VIDA_VALE[i]==4 | pense$VIDA_VALE[i]==3)){
+    autoavaliacao_negativa[i] <- "Sim"
+  }
+  else{
+    autoavaliacao_negativa[i] <- "Não"
+  }
+}
+
+pense$AUTOAVALIACAO_NEGATIVA <- factor(autoavaliacao_negativa,
+                                       c("Abandono", "Sim", "Não", "Sem resposta"),
+                                       ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
