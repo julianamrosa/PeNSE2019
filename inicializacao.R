@@ -1734,6 +1734,57 @@ for (i in 1:nrow(pense)){
 pense$MOTIVO_UBS <- factor(motivo_ubs, c(-2, -1, 1, 3, 5:7, 12:13, 99),
                     ordered=T)
 
+# Ajuste para tabela 14.3.1
+
+pcs <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P33A[i])){
+    pcs[i] <- NA
+  }
+  else if (pense$E01P33A[i] %in% 2:7){
+    pcs[i] <- 2
+  }
+  else{
+    pcs[i] <- pense$E01P33A[i]
+  }
+}
+
+pense$PCS <- factor(pcs, c(1:2, 9),
+                    ordered=T)
+
+# Ajuste para tabela 14.6.1
+
+conselho <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P7301[i])){
+    conselho[i] <- NA
+  }
+  else if (pense$E01P7301[i]==-1
+           & pense$E01P7302[i]==-1
+           & pense$E01P7303[i]==-1
+           & pense$E01P7304[i]==-1
+           & pense$E01P7305[i]==-1
+           & pense$E01P7306[i]==-1){
+    conselho[i] <- "Não"
+  }
+  else if (pense$E01P7301[i]==9
+           & pense$E01P7302[i]==9
+           & pense$E01P7303[i]==9
+           & pense$E01P7304[i]==9
+           & pense$E01P7305[i]==9
+           & pense$E01P7306[i]==9){
+    conselho[i] <- "Sem resposta"
+  }
+  else{
+    conselho[i] <- "Sim"
+  }
+}
+
+pense$CONSELHO <- factor(conselho, c("Sim", "Não", "Sem resposta"),
+                    ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
