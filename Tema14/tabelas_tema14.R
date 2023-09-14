@@ -383,5 +383,3 @@ wb <- loadWorkbook("Tema14/Tema14.xlsx")
 addWorksheet(wb,"14.9.3")
 writeData(wb,"14.9.3",tabela_14_93)
 saveWorkbook(wb,"Tema14/Tema14.xlsx",overwrite = TRUE)
-
-# Refazer 14.6.x lembrando do "nenhum desses temas"

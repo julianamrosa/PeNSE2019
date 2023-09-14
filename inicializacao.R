@@ -1785,6 +1785,49 @@ for (i in 1:nrow(pense)){
 pense$CONSELHO <- factor(conselho, c("Sim", "Não", "Sem resposta"),
                     ordered=T)
 
+# Ajuste para tabela 15.1.1
+
+regra_alimento <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P77[i])){
+    regra_alimento[i] <- NA
+  }
+  else if (pense$E01P77[i] %in% 1:3){
+    regra_alimento[i] <- 1
+  }
+  else{
+    regra_alimento[i] <- pense$E01P77[i]
+  }
+}
+
+pense$REGRA_ALIMENTO <- factor(regra_alimento, c(1, 4, 9),
+                    ordered=T)
+
+# Ajuste para tabela 15.2.1
+
+oferece_alimento <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P11A[i])){
+    oferece_alimento[i] <- NA
+  }
+  else if (pense$E01P11A[i]==1
+           | pense$E01P13A[i]==1){
+    oferece_alimento[i] <- 1
+  }
+  else if (pense$E01P11A[i]==9
+           | pense$E01P13A[i]==9){
+    oferece_alimento[i] <- 9
+  }
+  else{
+    oferece_alimento[i] <- 2
+  }
+}
+
+pense$OFERECE_ALIMENTO <- factor(oferece_alimento, c(1, 2, 9),
+                         ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
