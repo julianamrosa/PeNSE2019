@@ -1804,7 +1804,7 @@ for (i in 1:nrow(pense)){
 pense$REGRA_ALIMENTO <- factor(regra_alimento, c(1, 4, 9),
                     ordered=T)
 
-# Ajuste para tabela 15.2.1
+# Ajuste para tabela 15.11.1
 
 oferece_alimento <- c()
 
@@ -1827,6 +1827,34 @@ for (i in 1:nrow(pense)){
 
 pense$OFERECE_ALIMENTO <- factor(oferece_alimento, c(1, 2, 9),
                          ordered=T)
+
+# Ajuste para tabela 15.16.1
+
+funcao_horta <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P49A1[i])){
+    funcao_horta[i] <- NA
+  }
+  else if (pense$E01P49A1[i]==1
+           | pense$E01P49A2[i]==1){
+    funcao_horta[i] <- 1
+  }
+  else if (pense$E01P49A1[i]==-1
+           | pense$E01P49A2[i]==-1){
+    funcao_horta[i] <- -1
+  }
+  else if (pense$E01P49A1[i]==9
+           | pense$E01P49A2[i]==9){
+    funcao_horta[i] <- 9
+  }
+  else{
+    funcao_horta[i] <- 2
+  }
+}
+
+pense$FUNCAO_HORTA <- factor(funcao_horta, c(-1, 1, 2, 9),
+                                 ordered=T)
 
 # Objeto inicial
 desenho_pre <- svydesign(
