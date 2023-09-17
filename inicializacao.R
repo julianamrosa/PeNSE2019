@@ -1856,6 +1856,113 @@ for (i in 1:nrow(pense)){
 pense$FUNCAO_HORTA <- factor(funcao_horta, c(-1, 1, 2, 9),
                                  ordered=T)
 
+# Ajuste para tabela 16.2.1
+
+atividade_fisica_outro <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P7502[i])){
+    atividade_fisica_outro[i] <- NA
+  }
+  else if (pense$E01P7502[i]==1 | pense$E01P7503[i]==1
+           | pense$E01P7506[i]==1 | pense$E01P7507[i]==1
+           | pense$E01P7508[i]==1){
+    atividade_fisica_outro[i] <- 1
+  }
+  else if (pense$E01P7502[i]==0
+           & pense$E01P7503[i]==0 & pense$E01P7506[i]==0
+           & pense$E01P7507[i]==0 & pense$E01P7508[i]==0){
+    atividade_fisica_outro[i] <- 0
+  }
+  else if (pense$E01P7502[i]==-1
+           & pense$E01P7503[i]==-1 & pense$E01P7506[i]==-1
+           & pense$E01P7507[i]==-1 & pense$E01P7508[i]==-1){
+    atividade_fisica_outro[i] <- -1
+  }
+  else{
+    atividade_fisica_outro[i] <- 9
+  }
+}
+
+pense$ATIVIDADE_FISICA_OUTRO <- factor(atividade_fisica_outro, c(-1, 0, 1, 9),
+                             ordered=T)
+
+# Ajuste para tabela 16.3.1
+
+atividades_extras <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P22A[i])){
+    atividades_extras[i] <- NA
+  }
+  else if (pense$E01P22A[i] %in% 1:3){
+    atividades_extras[i] <- 1
+  }
+  else{
+    atividades_extras[i] <- pense$E01P22A[i]
+  }
+}
+
+pense$ATIVIDADES_EXTRAS <- factor(atividades_extras, c(-1, 1, 4, 9),
+                                       ordered=T)
+
+# Ajuste para tabela 16.6.1
+
+pista_corrida <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P18A[i])){
+    pista_corrida[i] <- NA
+  }
+  else if (pense$E01P18A[i] %in% 2:3){
+    pista_corrida[i] <- 2
+  }
+  else{
+    pista_corrida[i] <- pense$E01P18A[i]
+  }
+}
+
+pense$PISTA_CORRIDA <- factor(pista_corrida, c(1, 2, 9),
+                                  ordered=T)
+
+# Ajuste para tabela 17.2.1
+
+suspender_aulas <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P59A2[i])){
+    suspender_aulas[i] <- NA
+  }
+  else if (pense$E01P59A2[i] %in% 2:3){
+    suspender_aulas[i] <- 2
+  }
+  else{
+    suspender_aulas[i] <- pense$E01P59A2[i]
+  }
+}
+
+pense$SUSPENDER_AULAS <- factor(suspender_aulas, c(-1, 1, 2, 9),
+                              ordered=T)
+
+# Ajuste Tema 9 e 17
+
+faltou_medo <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$B09001[i])){
+    faltou_medo[i] <- NA
+  }
+  else if (pense$B09001[i] %in% 2:6){
+    faltou_medo[i] <- 2
+  }
+  else{
+    faltou_medo[i] <- pense$B09001[i]
+  }
+}
+
+pense$FALTOU_MEDO <- factor(faltou_medo, c(-2, 1, 2, 9),
+                                ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
