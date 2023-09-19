@@ -103,3 +103,133 @@ for (i in 1:nrow(pense)){
 
 pense$VIOLENCIA_SEXUAL <- factor(violencia_sexual, c(1, 2, 3, 9),
                             ordered=T)
+
+# Ajuste para tabela 17.3.1
+
+roubo2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$ROUBO[i])){
+    roubo2[i] <- NA
+  }
+  else if (pense$ROUBO[i] %in% 2:3){
+    roubo2[i] <- 2
+  }
+  else{
+    roubo2[i] <- pense$ROUBO[i]
+  }
+}
+
+pense$ROUBO2 <- factor(roubo2, c(1, 2, 9),
+                      ordered=T)
+
+tiros2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$TIROS[i])){
+    tiros2[i] <- NA
+  }
+  else if (pense$TIROS[i] %in% 2:3){
+    tiros2[i] <- 2
+  }
+  else{
+    tiros2[i] <- pense$TIROS[i]
+  }
+}
+
+pense$TIROS2 <- factor(tiros2, c(1, 2, 9),
+                      ordered=T)
+
+venda_drogas2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$VENDA_DROGAS[i])){
+    venda_drogas2[i] <- NA
+  }
+  else if (pense$VENDA_DROGAS[i] %in% 2:3){
+    venda_drogas2[i] <- 2
+  }
+  else{
+    venda_drogas2[i] <- pense$VENDA_DROGAS[i]
+  }
+}
+
+pense$VENDA_DROGAS2 <- factor(venda_drogas2, c(1, 2, 9),
+                             ordered=T)
+
+agressao_fisica2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$AGRESSAO_FISICA[i])){
+    agressao_fisica2[i] <- NA
+  }
+  else if (pense$AGRESSAO_FISICA[i] %in% 2:3){
+    agressao_fisica2[i] <- 2
+  }
+  else{
+    agressao_fisica2[i] <- pense$AGRESSAO_FISICA[i]
+  }
+}
+
+pense$AGRESSAO_FISICA2 <- factor(agressao_fisica2, c(1, 2, 9),
+                                ordered=T)
+
+assassinato2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$ASSASSINATO[i])){
+    assassinato2[i] <- NA
+  }
+  else if (pense$ASSASSINATO[i] %in% 2:3){
+    assassinato2[i] <- 2
+  }
+  else{
+    assassinato2[i] <- pense$ASSASSINATO[i]
+  }
+}
+
+pense$ASSASSINATO2 <- factor(assassinato2, c(1, 2, 9),
+                            ordered=T)
+
+violencia_sexual2 <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$VIOLENCIA_SEXUAL[i])){
+    violencia_sexual2[i] <- NA
+  }
+  else if (pense$VIOLENCIA_SEXUAL[i] %in% 2:3){
+    violencia_sexual2[i] <- 2
+  }
+  else{
+    violencia_sexual2[i] <- pense$VIOLENCIA_SEXUAL[i]
+  }
+}
+
+pense$VIOLENCIA_SEXUAL2 <- factor(violencia_sexual2, c(1, 2, 9),
+                                 ordered=T)
+
+# Ajuste tabela 17.3.1
+
+alguma_violencia <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$ROUBO2[i])){
+    alguma_violencia[i] <- NA
+  }
+  else if (pense$ROUBO2[i]==2 | pense$TIROS2[i]==2
+           | pense$VENDA_DROGAS2[i]==2 | pense$AGRESSAO_FISICA2[i]==2
+           | pense$ASSASSINATO2[i]==2 | pense$VIOLENCIA_SEXUAL2[i]==2){
+    alguma_violencia[i] <- 2
+  }
+  else if (pense$ROUBO2[i]==9 | pense$TIROS2[i]==9
+           | pense$VENDA_DROGAS2[i]==9 | pense$AGRESSAO_FISICA2[i]==9
+           | pense$ASSASSINATO2[i]==9 | pense$VIOLENCIA_SEXUAL2[i]==9){
+    alguma_violencia[i] <- 9
+  }
+  else{
+    alguma_violencia[i] <- 1
+  }
+}
+
+pense$ALGUMA_VIOLENCIA <- factor(alguma_violencia, c(1, 2, 9),
+                                 ordered=T)

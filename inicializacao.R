@@ -1963,6 +1963,110 @@ for (i in 1:nrow(pense)){
 pense$FALTOU_MEDO <- factor(faltou_medo, c(-2, 1, 2, 9),
                                 ordered=T)
 
+# Ajuste tabela 18.1.1
+
+agua_potavel <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P51[i])){
+    agua_potavel[i] <- NA
+  }
+  else if (pense$E01P51[i] %in% 1:3){
+    agua_potavel[i] <- 1
+  }
+  else if (pense$E01P51[i]==-1){
+    agua_potavel[i] <- 0
+  }
+  else{
+    agua_potavel[i] <- 9
+  }
+}
+
+pense$AGUA_POTAVEL <- factor(agua_potavel, c(0, 1, 9),
+                            ordered=T)
+
+# Ajuste tabela 18.4.1
+
+possui_banheiro <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P55A[i])){
+    possui_banheiro[i] <- NA
+  }
+  else if (pense$E01P55A[i] %in% 1:2){
+    possui_banheiro[i] <- 1
+  }
+  else if (pense$E01P55A[i]==-1){
+    possui_banheiro[i] <- 0
+  }
+  else{
+    possui_banheiro[i] <- 9
+  }
+}
+
+pense$POSSUI_BANHEIRO <- factor(possui_banheiro, c(0, 1, 9),
+                             ordered=T)
+
+# Ajuste tabela 18.9.1
+
+sabao_pia <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P56[i])){
+    sabao_pia[i] <- NA
+  }
+  else if (pense$E01P56[i]==1 & pense$E01P57[i]==1){
+    sabao_pia[i] <- 1
+  }
+  else if (pense$E01P56[i]==9 | pense$E01P57[i]==9){
+    sabao_pia[i] <- 9
+  }
+  else{
+    sabao_pia[i] <- 0
+  }
+}
+
+pense$SABAO_PIA <- factor(sabao_pia, c(-1, 0, 1, 9),
+                                ordered=T)
+
+# Ajuste tabela 18.10.1
+
+lixo_interno <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P58A1[i])){
+    lixo_interno[i] <- NA
+  }
+  else if (pense$E01P58A1[i] %in% 1:2){
+    lixo_interno[i] <- 1
+  }
+  else{
+    lixo_interno[i] <- pense$E01P58A1[i]
+  }
+}
+
+pense$LIXO_INTERNO <- factor(lixo_interno, c(1, 3, 4, 9),
+                          ordered=T)
+
+# Ajuste tabela 18.11.1
+
+lixo_fora <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P58A2[i])){
+    lixo_fora[i] <- NA
+  }
+  else if (pense$E01P58A2[i] %in% 1:2){
+    lixo_fora[i] <- 1
+  }
+  else{
+    lixo_fora[i] <- pense$E01P58A2[i]
+  }
+}
+
+pense$LIXO_FORA <- factor(lixo_fora, c(1, 3, 4, 9),
+                             ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
