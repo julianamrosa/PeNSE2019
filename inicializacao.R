@@ -2067,6 +2067,44 @@ for (i in 1:nrow(pense)){
 pense$LIXO_FORA <- factor(lixo_fora, c(1, 3, 4, 9),
                              ordered=T)
 
+# Ajuste tabela 19.7.1
+
+alergia <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P66A[i])){
+    alergia[i] <- NA
+  }
+  else if (pense$E01P66A[i] %in% 1:3){
+    alergia[i] <- 1
+  }
+  else{
+    alergia[i] <- pense$E01P66A[i]
+  }
+}
+
+pense$ALERGIA <- factor(alergia, c(1, 4, 9),
+                          ordered=T)
+
+# Ajuste tabela 19.8.1
+
+cigarro_prof <- c()
+
+for (i in 1:nrow(pense)){
+  if (is.na(pense$E01P26A[i])){
+    cigarro_prof[i] <- NA
+  }
+  else if (pense$E01P26A[i] %in% 1:3){
+    cigarro_prof[i] <- 1
+  }
+  else{
+    cigarro_prof[i] <- pense$E01P26A[i]
+  }
+}
+
+pense$CIGARRO_PROF <- factor(cigarro_prof, c(1, 4, 9),
+                        ordered=T)
+
 # Objeto inicial
 desenho_pre <- svydesign(
   ids = ~ESCOLA,
