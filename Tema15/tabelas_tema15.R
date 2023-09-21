@@ -65,8 +65,6 @@ saveWorkbook(wb,"Tema15/Tema15.xlsx",overwrite = TRUE)
 
 ## TABELA 15.8.x ##
 
-#RODAR E CONFERIR
-
 table(pense$E01P12B06) #salgados assados - cantina
 
 tabelas_15_8x_pt1 <- modelo7(var=pense$E01P12B06,
