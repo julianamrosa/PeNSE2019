@@ -1,17 +1,18 @@
 
 ## TABELA 9.1.x ##
-#NÃO BATE
 table(pense$B09006A1) #freq usa cinto de segurança no banco da frente
 table(pense$CINTO_FRENTE) #freq usa cinto de segurança no banco da frente (agregado)
 table(pense$B09006A2) #freq usa cinto de segurança no banco de trás
 table(pense$CINTO_TRAS) #freq usa cinto de segurança no banco da trás (agregado)
 table(pense$CINTO) #nunca ou raramente usa cinto de segurança no banco da frente ou no de trás
 
-tabelas_9_1x <- modelo5(var=pense$CINTO,
+tabelas_9_1x <- modelo5_1(var=pense$CINTO,
                          var_string="CINTO",
                          var_titulo="Frequência com que usa cinto de segurança no banco da frente ou no de trás",
                          valor="Nunca ou raramente",
-                         filtragem=3)
+                         filtragem=3,
+                         var_filtro=pense$CINTO,
+                         valor_filtro=1)
 
 tabela_9_11 <- tabelas_9_1x$tabela1
 tabela_9_12 <- tabelas_9_1x$tabela2
@@ -42,39 +43,43 @@ table(pense$B09006A2) #freq usa cinto de segurança no banco de trás
 table(pense$CINTO_TRAS) #freq usa cinto de segurança no banco da trás (agregado)
 table(pense$CINTO) #nunca ou raramente usa cinto de segurança no banco da frente ou no de trás
 
-tabelas_9_2x <- modelo5(var=pense$CINTO_FRENTE,
+tabelas_9_2x <- modelo5_1(var=pense$CINTO_FRENTE,
                         var_string="CINTO_FRENTE",
                         var_titulo="Localização no banco do passageiro, para os alunos que nunca ou raramente usam cinto de segurança",
                         valor="Banco da frente",
-                        filtragem=3)
+                        filtragem=3,
+                        var_filtro=pense$CINTO_FRENTE,
+                        valor_filtro=1)
 
 tabela_9_21 <- tabelas_9_2x$tabela1
 tabela_9_22 <- tabelas_9_2x$tabela2
 tabela_9_23 <- tabelas_9_2x$tabela3
 
-tabelas_9_2x <- modelo5(var=pense$CINTO_TRAS,
+tabelas_9_2x <- modelo5_1(var=pense$CINTO_TRAS,
                         var_string="CINTO_TRAS",
                         var_titulo="Localização no banco do passageiro, para os alunos que nunca ou raramente usam cinto de segurança",
                         valor="Banco de trás",
-                        filtragem=3)
+                        filtragem=3,
+                        var_filtro=pense$CINTO_TRAS,
+                        valor_filtro=1)
 
 tabela_9_21 <- rbind(tabela_9_21, tabelas_9_2x$tabela1)
 tabela_9_22 <- rbind(tabela_9_22, tabelas_9_2x$tabela2)
 tabela_9_23 <- rbind(tabela_9_23, tabelas_9_2x$tabela3)
 
 wb <- loadWorkbook("Tema09/Tema09.xlsx")
-addWorksheet(wb,"9.1.1")
-writeData(wb,"9.1.1",tabela_9_11)
+addWorksheet(wb,"9.2.1")
+writeData(wb,"9.2.1",tabela_9_21)
 saveWorkbook(wb,"Tema09/Tema09.xlsx",overwrite = TRUE)
 
 wb <- loadWorkbook("Tema09/Tema09.xlsx")
-addWorksheet(wb,"9.1.2")
-writeData(wb,"9.1.2",tabela_9_12)
+addWorksheet(wb,"9.2.2")
+writeData(wb,"9.2.2",tabela_9_22)
 saveWorkbook(wb,"Tema09/Tema09.xlsx",overwrite = TRUE)
 
 wb <- loadWorkbook("Tema09/Tema09.xlsx")
-addWorksheet(wb,"9.1.3")
-writeData(wb,"9.1.3",tabela_9_13)
+addWorksheet(wb,"9.2.3")
+writeData(wb,"9.2.3",tabela_9_23)
 saveWorkbook(wb,"Tema09/Tema09.xlsx",overwrite = TRUE)
 
 

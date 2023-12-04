@@ -43,21 +43,21 @@ for (i in 1:nrow(pense)){
   if(is.na(pense$CINTO_FRENTE[i])){
     cinto[i] <- NA
   }
-  else if (pense$CINTO_FRENTE[i]==-2 | pense$CINTO_TRAS[i]==-2){
-    cinto[i] <- -2
-  }
-  else if (pense$CINTO_FRENTE[i]==9 | pense$CINTO_TRAS[i]==9){
-    cinto[i] <- 9
-  }
   else if (pense$CINTO_FRENTE[i]==2 | pense$CINTO_TRAS[i]==2){
     cinto[i] <- 2
   }
-  else{
+  else if (pense$CINTO_FRENTE[i]==-2 & pense$CINTO_TRAS[i]==-2){
+    cinto[i] <- -2
+  }
+  else if (pense$CINTO_FRENTE[i]==1 & pense$CINTO_TRAS[i]==1){
     cinto[i] <- 1
+  }
+  else{
+    cinto[i] <- 4
   }
 }
 
-pense$CINTO <- factor(cinto, c(-2, 1:2, 9),
+pense$CINTO <- factor(cinto, c(-2, 1:2, 4),
                       ordered=T)
 
 # 9.3.x #

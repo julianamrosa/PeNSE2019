@@ -1571,45 +1571,43 @@ for (i in 1:nrow(pense)){
     autoavaliacao_negativa[i] <- NA
   }
   else if ((pense$PREOCUPACAO[i]==4
-           & pense$TRISTE[i]==4
-           & pense$NINGUEM_PREOCUPA[i]==4
-           & pense$IRRITADO[i]==4
-           & pense$VIDA_VALE[i]==4) |
-           (pense$TRISTE[i]==4
-            & pense$NINGUEM_PREOCUPA[i]==4
-            & pense$IRRITADO[i]==4
-            & pense$VIDA_VALE[i]==4) |
-           (pense$PREOCUPACAO[i]==4
-            & pense$NINGUEM_PREOCUPA[i]==4
-            & pense$IRRITADO[i]==4
-            & pense$VIDA_VALE[i]==4) |
-           (pense$PREOCUPACAO[i]==4
-            & pense$TRISTE[i]==4
-            & pense$IRRITADO[i]==4
-            & pense$VIDA_VALE[i]==4) |
-           (pense$PREOCUPACAO[i]==4
             & pense$TRISTE[i]==4
             & pense$NINGUEM_PREOCUPA[i]==4
-            & pense$VIDA_VALE[i]==4) |
-           (pense$PREOCUPACAO[i]==4
-            & pense$TRISTE[i]==4
-            & pense$NINGUEM_PREOCUPA[i]==4
-            & pense$IRRITADO[i]==4)){
+            & pense$IRRITADO[i]==4
+            & pense$VIDA_VALE[i]==4)
+           | (pense$PREOCUPACAO[i]==4
+              & pense$TRISTE[i]==4
+              & pense$NINGUEM_PREOCUPA[i]==4
+              & pense$IRRITADO[i]==4)
+           | (pense$PREOCUPACAO[i]==4
+              & pense$TRISTE[i]==4
+              & pense$NINGUEM_PREOCUPA[i]==4
+              & pense$VIDA_VALE[i]==4)
+           | (pense$PREOCUPACAO[i]==4
+              & pense$TRISTE[i]==4
+              & pense$IRRITADO[i]==4
+              & pense$VIDA_VALE[i]==4)
+           | (pense$PREOCUPACAO[i]==4
+              & pense$NINGUEM_PREOCUPA[i]==4
+              & pense$IRRITADO[i]==4
+              & pense$VIDA_VALE[i]==4)
+           | (pense$TRISTE[i]==4
+              & pense$NINGUEM_PREOCUPA[i]==4
+              & pense$IRRITADO[i]==4
+              & pense$VIDA_VALE[i]==4)){
     autoavaliacao_negativa[i] <- "Sim"
   }
-  else if ((pense$PREOCUPACAO[i]==-2)
-           | (pense$TRISTE[i]==-2)
-           | (pense$NINGUEM_PREOCUPA[i]==-2)
-           | (pense$IRRITADO[i]==-2)
-           | (pense$VIDA_VALE[i]==-2)){
-    autoavaliacao_negativa[i] <- "Abandono"
-  }
-  else if (pense$PREOCUPACAO[i]==9
+  else if (pense$PREOCUPACAO[i]==-2
+           | pense$TRISTE[i]==-2
+           | pense$NINGUEM_PREOCUPA[i]==-2
+           | pense$IRRITADO[i]==-2
+           | pense$VIDA_VALE[i]==-2
+           | pense$PREOCUPACAO[i]==9
            | pense$TRISTE[i]==9
            | pense$NINGUEM_PREOCUPA[i]==9
            | pense$IRRITADO[i]==9
            | pense$VIDA_VALE[i]==9){
-    autoavaliacao_negativa[i] <- "Sem resposta"
+    autoavaliacao_negativa[i] <- "Abandono"
   }
   else{
     autoavaliacao_negativa[i] <- "Não"
@@ -1617,8 +1615,35 @@ for (i in 1:nrow(pense)){
 }
 
 pense$AUTOAVALIACAO_NEGATIVA <- factor(autoavaliacao_negativa,
-                                       c("Abandono", "Sim", "Não", "Sem resposta"),
+                                       c("Abandono", "Sim", "Não"),
                                        ordered=T)
+
+#autoavaliacao_negativa <- c()
+
+#for (i in 1:nrow(pense)){
+#  if (is.na(pense$PREOCUPACAO[i])){
+#    autoavaliacao_negativa[i] <- NA
+#  }
+#  else if (pense$TRISTE[i]==-2
+#           | pense$VIDA_VALE[i]==-2){
+#    autoavaliacao_negativa[i] <- "Abandono"
+#  }
+#  else if (pense$TRISTE[i]==9
+#           | pense$VIDA_VALE[i]==9){
+#    autoavaliacao_negativa[i] <- "Sem resposta"
+#  }
+#  else if ((pense$TRISTE[i]==4)
+#           & (pense$VIDA_VALE[i]==4)){
+#    autoavaliacao_negativa[i] <- "Sim"
+#  }
+#  else{
+#    autoavaliacao_negativa[i] <- "Não"
+#  }
+#}
+
+#pense$AUTOAVALIACAO_NEGATIVA <- factor(autoavaliacao_negativa,
+#                                       c("Abandono", "Sim", "Não", "Sem resposta"),
+#                                       ordered=T)
 
 # Ajuste para tabela 13.1.1
 
